@@ -1,0 +1,16 @@
+---
+title: "INSERT_TITLE_HERE"
+author: 
+  - name: Philip Parker
+    affiliation: Australian Catholic University
+
+date: September 8, 2020
+output: 
+  hrbrthemes::ipsum:
+    toc: true
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, dpi = 300)
+```
+
+## References
