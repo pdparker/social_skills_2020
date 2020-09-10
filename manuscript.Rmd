@@ -1,0 +1,182 @@
+---
+title             : "School Socioeconomic Status Context and Social Skills in Children"
+shorttitle        : "School SES and Social Skills"
+author: 
+  - name          : "Philip Parker"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "33 Berry St, North Sydney, NSW, 2060, Australia"
+    email         : "philip.parker@acu.edu.au"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Ernst-August Doelle"
+    affiliation   : "1,2"
+    role:
+      - Writing - Review & Editing
+affiliation:
+  - id            : "1"
+    institution   : "Institute for Positive Psychology and Education, Australian Catholic University"
+  - id            : "2"
+    institution   : "Konstanz Business School"
+authornote: |
+  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
+  Enter author note here.
+abstract: |
+  
+  As researchers and policymakers try to understand the consequences of SES for educational and occupational attainment, they increasingly consider social skills to be critical. Yet little research has considered how the school socio-economic context may differentially promote or hinder social skill development. In a representative longitudinal sample of 5361 Australian children, we tested the association between school average socioeconomic status and social skills as reported by parents and teachers. All models controlled for prior social skills at age 4, and a wide range of covariates. We found that school context was associated with social skill assimilation: controlling for individual socioeconomic status, children in more advantaged schools had more prosocial behavior and fewer peer and conduct problems. We found a consistent interaction between individual and school average socioeconomic status that suggested assimilation effects were only present for children from low socioeconomic backgrounds. We found that children from low socioeconomic backgrounds enter school with lower average social skills. They are more likely to be enrolled in more disadvantaged schools. Finally, the social skills of children from low socioeconomic backgrounds worsen in low SES contexts. Taking the evidence together, social stratified schools may harm children from low SES backgrounds while not benefiting children from high SES backgrounds.
+keywords          : "social skills; assimilation effects; socioeconomic status; school context"
+wordcount         : "X"
+bibliography      : ["r-references.bib"]
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : no
+documentclass     : "apa6"
+classoption       : "man"
+output            : 
+  pdf: 
+    papaja::apa6_pdf
+  html_document: 
+    fig_caption: yes
+    toc: yes
+  html_notebook: 
+    fig_caption: yes
+    toc: yes
+    highlight: haddock
+    theme: spacelab
+  word:
+    papaja::apa6_doc
+---
+
+```{r setup, include = FALSE}
+# Create Reference List
+library("papaja")
+r_refs("r-references.bib")
+
+# Set default Knitr Options
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE, dpi = 300)
+
+# Set tidyverse to quiet
+library("tidyverse")
+options(tidyverse.quiet = TRUE)
+```
+
+After decades of research and intervention aimed at reducing educational and occupational inequality, inequalities persist [@reardon2011]. In response to this bleak picture, there has been a flurry of interest in social-emotional competencies driven by the research of Nobel prize-winning economist James Heckman. [@heckman2006] argues that research and intervention on reducing educational inequality have focused too narrowly on "cognitive" abilities. Yet cognitive abilities are not the only pathway through which low socioeconomic status may stifle educational and occupational attainment. For example, social skills are a potentially powerful explanation for socioeconomic status gaps in educational and occupational attainment <!-- REFERENCE -->. Children from low socioeconomic backgrounds (here after low SES children[^1]) appear to enter school with poorer social skills (e.g., <!-- REFERENCE -->Jerrim & Sims, 2019). This is concerning as childhood social skills predict a wide variety of later life outcomes (e.g., <!-- REFERENCE -->Jones, Greenberg, & Crowley, 2015). Inspired by identity economics, our research asks whether the school context in the stratified school system of Australia may exacerbate this issue. In particular, we explore whether school average socioeconomic status predicts social skills in Year 3 (age 8)---using measures of peer problems, conduct problems, and prosocial behavior. We consider if this association is independent of children's incoming social skills at age 4, children's own socioeconomic status, and a set of demographic and academic covariates in a representative longitudinal sample of Australian children.
+
+[^1]: We acknowledge that children themselves do not have a socioeconomic status. Rather they are raised in an environment which is shaped by their parents' socioeconomic status (SES). However, for brevity we refer to children as low SES or high SES hereafter. Likewise, in place of low school average SES and high school average SES we refer to disadvantaged and advantaged schools respectively.
+
+## Social Skills
+
+Of the skills that employers are looking for when hiring candidates, social skills are some of the most desirable (Rios, Ling, Pugh, Becker, & Bacall, 2020). Social skills also seem to be a viable target for intervention with meta-analysis showing social and emotional learning programs have moderate effects on improving key social skills like reducing conduct problems and improving social-emotional learning skills and prosocial behavior (Durlak, Weissberg, Dymnicki, Taylor, & Schellinger, 2011). Social skills appear to be worthwhile targets from a societal perspective given their relationship to academic achievement (Corcoran, Cheung, Kim, & Xie, 2018) and their role in predicting adult employment, crime, public assistance, substance abuse, and mental health (Jones et al., 2015). Among young children, it is increasingly common to focus on social skills as measured by the Strengths and Difficulties Questionnaire (see Datta Gupta & Simonsen, 2010; Gutman & Schoon, 2013; Jerrim & Sims, 2019). We use this questionnaire to measure peer problems, conduct problems, and prosocial behavior. We model social skills using both parent and teacher reports.
+
+## Contrast Processes and Identity Economics
+
+Children's social skills depend in part on the context in which they develop (Jerrim & Sims, 2019). There are two major forces in social psychology---assimilation and contrast (Mussweiler, Rüter, & Epstude, 2004)---that may account for how school context affects children's social skill development. Contrast processes are in operation when children's perceptions, opinions, or behavior depend on their perceived rank order within their group. Assimilation processes are in operation when people's perceptions, opinions, or behaviour depend on reference group norms (Kelly, 1952).
+
+The theory of *Identity Economics* implies an assimilative effect (Akerlof & Kranton, 2010). Identity Economics argues that the social context of the school possesses a gravity that attracts students' identity, values, and behavior toward the prototypical identity, values, and behavior of the school (Akerlof & Kranton, 2002). School ethos and norms around behavior incentivize children to act in a manner consistent with these norms. School average socioeconomic status could, thus, affect social skills. A now large body of research shows that social skills are correlated with socioeconomic status (SES; de Laat, Essink-Bot, van Wassenaer-Leemhuis, & Vrijkotte, 2015; Garratt, Chandola, Purdam, & Wood, 2016; McMunn, Nazroo, Marmot, Boreham, & Goodman, 2001; Rajmil et al., 2013) and, this relationship is present before children enter school (Washbrook & Waldfogel, 2011). In socially stratified school systems, children of similar SES tend to be schooled together. Thus, if children assimilate to the school context they are in, as Identity Economics would suggest, we would expect school average socioeconomic status to influence the development of social skills.
+
+Jerrim and Sims (2019) provide one test of the potential assimilative effect of schools on social skills. They found that living in an area with selective schools is associated with better social skills when compared to children living in districts without a selective school. They also found some assimilative effects of school average SES predicting social skills using the total score of the strengths and difficulties questionnaire (SDQ). The assimilation effects they found, however, were weak. This may be because the authors used the SDQ total score---which includes a range of social and emotional behaviors---rather than focusing on specific social skill components of the SDQ. Further, assimilative effects may be non-linear. Put another way, the assimilative power of school contexts may not be evenly distributed across the socioeconomic distribution. This is an important consideration that research has not hitherto considered, though differential assimilation across the socioeconomic status gradient has been theorized (Gradstein & Justman, 2005).
+
+# Current Study
+
+Australia is the context of our research. Australia is a useful country to focus on because Australia's Programme for International Student Assessment (PISA) Index of Social Inclusion score is relatively low (OECD, 2015). This means that Australian schools are socially stratified (Parker et al., 2018b, 2019). Our major hypothesis is that school average socioeconomic status will have an assimilation effect on association with social skills at Year 3 (age 8) controlling for incoming social skills (age 4), individual socioeconomic status (age 4) and a range of demographic and achievement covariates[^2]. We also anticipate that there will be differential associations of school average socioeconomic status on social skills across the socioeconomic status gradient.
+
+[^2]: This assimilation effect will be indicated by a negative coefficient for peer problems and conduct problems regressed on school average socioeconomic status and a positive coefficient for prosocial behavior regressed on school average socioeconomic status. This is because of the way in which these factors are valanced (high scores indicate high levels of prosocial behavior, but also high levels of peer and conduct problems).
+
+We expect the assimilation effects to occur in the context of low SES children entering school with poorer social skills (de Laat, Essink-Bot, van Wassenaer-Leemhuis, & Vrijkotte, 2015; Garratt, Chandola, Purdam, & Wood, 2016; McMunn, Nazroo, Marmot, Boreham, & Goodman, 2001; Rajmil et al., 2013). Given Australian schools are socially stratified (OECD, 2015; Parker et al., 2018), we also expect low SES children to attend more disadvantaged schools on average.
+
+# Method
+
+## Participants and Study Design
+
+We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since (AIFS, 2015). LSAC is a complex survey with a stratified sampling design (that we account for in all analyses) and includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (27%) or were one of two children surveyed (36%) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in most school context research. We excluded participants who were not in school (e.g., were home schooled), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was 5,361 (52.1% male) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. Weights were provided by the survey organizers to ensure the sample represents the Australian population. This includes weights provided that aim to account for attrition.
+
+## Measures
+
+### Social skills at age 4 and 8
+
+Social skills were estimated using the peer problems, conduct problems, and prosocial behavior component scores from the SDQ (Goodman, 1997). We explored social skills at age 4 (for prior social skills) and age 8 (as primary outcomes) as reported by the child’s *parent* and the child’s *teacher*. The SDQ asks respondents to rate a child’s behavior in the last six months on a 3-point scale (not true, somewhat true, and certainly true). Questions ask about the child’s peer problems (“Rather solitary, tends to play alone”), conduct problems (“Often fights with other children or bullies them”), and prosociality (“Is kind to younger children”). We used the total scores for these scales as developed by the LSAC administrators. Scores ranged from 0 to 10. These scores were heavily left censored (see Figures 2-3) for peer and conduct problems with a preponderance of students being scored as a zero by their parent or teacher. prosocial behaviors were heavily right censored. Parents and teachers had moderate agreement for children at age 8 with correlations ranging from r = .40 for peer and r = .39 for conduct problems to r = .28 for prosocial behavior.
+
+The SDQ items measure a collection of associated behaviours and as such we treat them as index or a formative variable. In this case common reliability metrics do not make much sense; nor do reflective models like confirmatory factor analysis. Instead, we would want items that are not too redundant with each other. For formative scales a variable inflation factor (VIF) of less than 10 has been suggested has a cut-off score; with VIF values of less than 3.3 showing an item makes an excellent contribution to the index (Diamantopoulos, Riefler, & Roth, 2008; Thongrattana, 2010). In our case no VIF for any item for any social skills construct was higher than 2. Likewise, a limit of 30 on the condition index has been suggested as a good measure of the reliability of a formative construct (Thongrattana, 2010). This was the case for all our social skills constructs at both age 4 and age 8 and for both parent and teacher report. Parallel analysis suggested that all social skills constructs could be represented by a single principal component (but in all cases more than one reflective factor). The only exception was age 4 peer problems were parallel analysis suggested two components but the eigenvalue on the second component was barely greater than the simulated data suggesting a single index was likely still appropriate.
+
+### Socioeconomic Status
+
+*Individual SES* SES was measured using the Socioeconomic Position (SEP) index constructed by the LSAC survey organizers (Baker, Sipthorp, & Edwards, 2017). The SEP index is constructed from parent reported standardized weekly income, years of education, and ANU4 occupational prestige derived from the Australian Standard Classification of Occupations. The SEP has a mean of zero and a standard deviation of one. 
+
+*School average SES* was measured using the Index of Community Socioeconomic Advantage (ICSEA) that the Australian government uses to assess the relative advantage of schools for the purpose of funding allocation and policy. This measure was taken from government administration records. ICSEA has a mean of 1000 and a standard deviation of 100. We z-scored this variable for analysis.
+
+### Covariates
+
+Numeracy for the child and for their complete school grade was taken from administration records of National Assessment Program – Literacy and Numeracy (NAPLAN) test results. The relevant NAPLAN tests for this study are given to all eligible children in the country in Year 3 (age 8). The tests are scaled so they are comparable across age cohort and across year grade. These high-stakes tests have a mean of 500 and a standard deviation of 100. For verbal ability we used the Peabody Picture Vocabulary test (Dunn & Dunn, 2007) given to participants at age 4 (i.e., at or just before school commencement). Cohort was included as a covariate in all models as was measures of rural status, Indigenous status, language other than English status, state of residence, and gender—all measured at age 4. Both numeracy achievement and verbal ability were z-scored in the analysis.
+
+## Analysis
+
+There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child’s teacher and parent, missing data was inevitable. Attrition was offset by using applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less. To account for this, we constructed 10 imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package (Honaker, King, Blackwell, 2011). These 10 imputations were used in all analyses. All models used cluster robust standard errors to adjust standard errors for school clustering. LSAC strata was included as a fixed effect to account for the complex survey structure of the data. Analysis was done in the Zelig package in R (Imia, King, & Lau, 2008).
+
+All models in the paper that predicted social skills were estimated using Tobit models. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails (see Kleiber & Zeileis, 2008). As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. Johnson-Neyman regions of significance were used to investigate significant interactions. We also attempted to run random-intercept models using for school id both maximum likelihood estimation and MCMC sampling. In both cases models did not converge likely due to the unique nature of the data (i.e., many participants were the single representative of their school).
+
+Contextual effects like those reported here can be confusing to interpret. This is because positive effects of contextual variables can be incorrectly interpreted as positive in implication (or vice-versa for negative effects). This issue is compounded when interactions involving contextual effects are included in the model. Thus, we also provide counterfactual estimates of expected score differences for different levels of student SES and school average SES when the interaction between these variables is significant. Because of the number of covariates (35 in total because many of the covariates, such as strata, were categorical and thus were included as a series of dummy variables), we only report results for the main analysis variables.
+
+# Results
+
+## Low SES Children Start School with Poorer Social Skills and Enroll in More Disadvantaged Schools 
+
+In order to provide a context for the main analyses we first aimed to show a) that richer children enter school with better social skills (as measured by their parents) and b) that children in Australia tend to be schooled in socially stratified schools. Our findings show that high SES children do enter school with better social skills. Student SES is correlated with less peer (B = -.284 [-.345, -.222]) and conduct (B = -.371 [-.438, -.304]) problems. They also had slightly higher prosocial behavior (B = .074 [.009, .139  ]). Further, student SES was strongly related to the school average SES of the school they attended (r = .480 [.458, .499]; see Figure 1).
+
+## School Average SES Predicts Social Skills Controlling for Age 4 SES and Social Skills
+
+We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results are presented under the Model 1 column in Tables 1-3. Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems but only for parent reports. 
+
+## School Average SES Predicts Social Skills Mainly in Low SES Children
+
+The predictive association of school average SES on social skills was not consistent across the SES gradient (see Model 2 results reported in Tables 1-3). Significant school average SES by student SES interactions were significant for peer and conduct problems for both teacher and parent reports and for teacher reported prosocial behavior. Regions of significance for these interactions can be found in Figures 2-4. Likewise, counterfactual expected score differences on the latent continuous social skill (underlying the censored social skill in the Tobit model) are given in Table 4. These results show that low SES children appear to be most influenced by school average SES. Middle to high SES children appeared to have largely similar scores regardless of the school they were in (see Figures 2-4). For example, both parents and teachers report that low SES children had approximately half a point more peer problems in more SES disadvantaged schools than in more SES advantaged schools (see Table 4). High SES children had almost no difference in peer problems regardless of the school they were in.
+
+# Discussion
+
+Research on social skills has repeatedly shown that there is a socioeconomic status gradient to social skills (see Datta Gupta & Simonsen, 2010; Gutman & Schoon, 2013; Jerrim & Sims, 2019). Yet little research in this area has considered the potential influence of school context on social skill development (cf. Jerrim & Sims, 2019). This is a lacuna that our research sought to fill. Our research considered the association of school socioeconomic context with social skills in early elementary school. We used both parent and teacher reported social skills, finding surprisingly consistent effect sizes regardless of reporting source despite their relatively modest agreement. Importantly, our research used a number of critical controls as well as prior social skills that helped us better identify the effect of school average socioeconomic status. 
+
+For both teacher and parent reports we found that the association of school context with social skills depended on the individual child’s own socioeconomic background. This was the case for all outcomes except for parent reported prosocial behavior. It is worth emphasizing that the nature of these interactions was consistent for all outcomes. Namely, that middle to high SES children were largely unaffected by school socioeconomic context while the children with the lowest socioeconomic status experienced the largest effect.
+
+## School Context Theory
+
+A greater focus on social skills as explanations for socioeconomic gaps in educational attainment has been an important step forward in inequality research (see Heckman, 2006). Now that research and theory has illuminated the importance of such skills, research needs to consider the conditions under which they develop. Previous economic theory has emphasized the role that schools play as a context for the development of non-academic factors like social skills and claimed this as one of the ways in which intergenerational inequality is transmitted (Bowles & Gintis, 1976). Such theory has tended to emphasize the role of teachers and systems, relegating  students’ fellow classmates to a more secondary role. In contrast, psychology research has tended to emphasize the role of frames-of-reference with particular emphasize given to the role of a child’s peers as providing a standard against which a child might assimilate to or contrast against (Mussweiler, Rüter, & Epstude, 2004). It seems likely that both economic and psychology theory is right to some extent but the relative contribution to school context effects of system, teacher, and peers is unclear. Our research shows that school context effects are significant and mainly seem to effect low SES children. Future research is needed to determine what the most important mechanisms are that explain this effect.
+
+## School Context and Assimilation Effects
+
+For children with SES status below the mean, school socioeconomic context had statistically significant associations with social skills in Year 3 (controlling for social skills at age 4). The implications of this are mixed. Our results do suggest that a low SES child who is enrolled in an advantaged school should expect to have similar levels of social skills as their high SES peers. The problem is that in countries like Australia low SES children are relatively rarely enrolled in advantaged schools. As we noted in the introduction Australia has relatively low levels of social inclusion as measured by PISA (OECD, 2015). This means that Australian schools tend to be homogenous in terms of their student composition (see Parker, Sanders, & Guo, 2019). As our results show low SES children tend to attend disadvantaged schools and their social skills appear to suffer as a result. What our findings suggest is that children’s social skills, particularly low SES children, acclimatize toward the average of the school they are in. Consistent with the literature we found that low SES children start school with lower social skills. In a country like Australia, whose schools are socially stratified, low SES children will tend to be schooled in more disadvantaged schools (see Figure 1). The net effect in such a system is that low SES children will tend to have their already lower social skills depressed by the school climate they are most likely to find themselves in. 
+
+This counterfactual may suggest that school choice, in which low SES children receive vouchers or similar, may be beneficial (see Friedman, 1962). Strategies like school vouchers to attend magnet schools could be a powerful policy lever to overcome socioeconomic gaps in social skills. This approach tackles the problem of assimilative contextual effects via market-based systems. Yet this policy requires there to be few barriers, whether psychological or otherwise, to parents using vouchers to select the best school that matches the needs of their child. But this does not seem to be the case (Gradstein & Justman, 2005). Indeed, empirical evidence suggests that school choice tends to exacerbate inequality (e.g., Saporito, 2003). 
+
+Parker et al. (2016, 2018a, 2018b, 2019) have suggested that empirical evidence shows greater school choice at the country level is related to poorer average ability levels, lower aspirations, and paradoxical effects on psychological factors like motivation and self-concept that appears to have negative consequences for all children. They argue that empirical evidence suggests policy should encourage school selection policies that maximize within school heterogeneity. This would require considerable state intervention to achieve and may thus impose unreasonable restrictions on parents’ rights to choose. However, it is worth noting that our counterfactual analysis (Table 4) shows that high SES children appear to not suffer to any notable degree, in relation to social skills, by being enrolled in a disadvantaged school. 
+
+There are strong arguments and good empirical support on both sides of this debate, suggesting that we are far from a settled position on the matter. At least for the current context in Australia where social stratification is moderately high and where the school system seems to ensure school choice is more clearly an option for the rich than the poor (Parker et al., 2019), our results are troubling. In particular, they suggest low SES children face a triple bind. First, they enter school with lower social skills. Second, they enter schools where assimilation effects are likely to further dampen social skill development. Third, they appear particularly vulnerable to their school context in this respect.
+
+## Limitations
+
+There are many strengths to this study. Most notably, the use of longitudinal data that allowed for us to control for incoming social skills and government administrative data that provided access to complete and high-quality data for school average socioeconomic status at the school level. Further the use of LSAC data meant that we were able to control for a number of potential confounding variables drawn from a longitudinal representative sample of Australian children. Nevertheless, there are limitations. Our aim was to try to build a model from high-quality data that could assist us in making as close to an *all else being equal* comparisons as possible (Angrist & Pischke, 2009). It is for this reason we have cautiously used causal language in relation to our claims. But our claim to causality would have been stronger had they been backed by an experimental design. While the Move to Opportunity program in the US suggest experiments where low SES children are randomly assigned to richer schools (or at least randomly assigned to areas with richer schools) are possible (see de Souza Briggs, Popkin & Goering, 2010), it is hard to imagine a situation in which richer children could be randomly assigned to more disadvantaged schools. Given the non-linearity in effects we observed this would be a serious limitation of an experimental design. 
+
+Finally, we were not able to identify and compare the relative impact of different mechanisms that may explain the influence of school average socioeconomic status on social skills. As educational psychologists our study is framed in relation to assimilation effects in response to children’s peer frames-of-reference. Yet, economic theory tends to emphasize the socialization influence of teachers and educational structures (see Bowls & Gintis, 2001). Identifying and comparing these mechanisms is an important future direction for research.
+
+# Conclusion
+
+The influence of school average socioeconomic status on social skills represent the triple disadvantage that low SES children can face in social stratified school systems. First, low SES children are more likely to start school with lower social skills than their high SES peers. Second, because the school system is stratified by socioeconomic status, low SES children are likely to enroll in more disadvantaged schools. Third, assimilative associations suggest low SES children, already disadvantaged by prior social skill gaps, are more affected by their school context than are middle to high SES children. Thus, while low SES children assimilate to lower social skill environments, richer children appear to gain little advantage from their more conducive environments and appear to function equally well in advantaged and disadvantaged schools. Taken together our results support the call for a policy focus that aims to  a) decrease country level variance in social stratification, b) decrease between school heterogeneity is social status, and c) in combination with (a), encourage school selection policies that maximize within school heterogeneity in social status.
+
+
+\newpage
+
+# References
+
+```{=tex}
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+```
+::: {#refs custom-style="Bibliography"}
+:::
+
+\endgroup
