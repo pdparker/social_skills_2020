@@ -104,8 +104,8 @@
       "Package": "broom",
       "Version": "0.7.0.9001",
       "Source": "GitHub",
-      "Remotes": "alexpghayes/modeltests",
       "RemoteType": "github",
+      "Remotes": "alexpghayes/modeltests",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "broom",
       "RemoteUsername": "tidymodels",
@@ -274,6 +274,13 @@
       "Repository": "CRAN",
       "Hash": "221d0ad75dfa03ebf17b1a4cc5c31dfc"
     },
+    "here": {
+      "Package": "here",
+      "Version": "0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "2c0406b8e0a4c3516ab37be62da74e3c"
+    },
     "highr": {
       "Package": "highr",
       "Version": "0.8",
@@ -411,8 +418,8 @@
       "Package": "papaja",
       "Version": "0.1.0.9997",
       "Source": "GitHub",
-      "Remotes": "tidymodels/broom",
       "RemoteType": "github",
+      "Remotes": "tidymodels/broom",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "papaja",
       "RemoteUsername": "crsh",
@@ -489,6 +496,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "97def703420c8ab10d8f0e6c72101e02"
+    },
+    "readit": {
+      "Package": "readit",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "6e29c05bcf55dee11a9ae25ff9b3996c"
     },
     "readr": {
       "Package": "readr",
