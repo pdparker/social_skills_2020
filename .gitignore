@@ -2,9 +2,12 @@
 .Rhistory
 .RData
 .Ruserdata
+.tex
 
 # Google Drive Stuff
 desktop.ini
 
 # Ignore Mac files
 .DS_Store
+
+_targets/
