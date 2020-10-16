@@ -9,17 +9,23 @@ author:
     email         : "philip.parker@acu.edu.au"
     role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
       - Conceptualization
+      - Formal Analysis
       - Writing - Original Draft Preparation
       - Writing - Review & Editing
-  - name          : "Ernst-August Doelle"
-    affiliation   : "1,2"
-    role:
+  - name          : "Taren Sanders"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "33 Berry St, North Sydney, NSW, 2060, Australia"
+    email         : "taren.sanders@acu.edu.au"
+    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
+      - Conceptualization
+      - Writing - Original Draft Preparation
       - Writing - Review & Editing
 affiliation:
   - id            : "1"
     institution   : "Institute for Positive Psychology and Education, Australian Catholic University"
   - id            : "2"
-    institution   : "Konstanz Business School"
+    institution   : "UCL Institute of Education, UCL"
 authornote: |
   Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
   Enter author note here.
@@ -94,7 +100,7 @@ We expect the assimilation effects to occur in the context of low SES children e
 
 ## Participants and Study Design
 
-We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC is a complex survey with a stratified sampling design (that we account for in all analyses) and includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (27%) or were one of two children surveyed (36%) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in most school context research. We excluded participants who were not in school (e.g., were home schooled), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was 5,361 (52.1% male) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. Weights were provided by the survey organizers to ensure the sample represents the Australian population. This includes weights provided that aim to account for attrition.
+We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC is a complex survey with a stratified sampling design (that we account for in all analyses) and includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (27%) or were one of two children surveyed (36%) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in most school context research. We excluded participants who were not in school (e.g., were home schooled), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was 5,361 (52.1% male) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. A participant flow diagram is present end in <!--# include figure 1 --> including the number of participants excluded because there were a) not in Year 3 during the age 8 LSAC data collection sweep; b) were not eligible to participate NAPLAN (e.g., due to intellectual disability; or c) were not enrolled in school (e.g., were home schooled).
 
 ## Measures
 
@@ -112,13 +118,15 @@ The SDQ items measure a collection of associated behaviours and as such we treat
 
 ### Covariates
 
-Numeracy for the child and for their complete school grade was taken from administration records of National Assessment Program -- Literacy and Numeracy (NAPLAN) test results. The relevant NAPLAN tests for this study are given to all eligible children in the country in Year 3 (age 8). The tests are scaled so they are comparable across age cohort and across year grade. These high-stakes tests have a mean of 500 and a standard deviation of 100. For verbal ability we used the Peabody Picture Vocabulary test [@dunn2007] given to participants at age 4 (i.e., at or just before school commencement). Cohort was included as a covariate in all models as was measures of rural status, Indigenous status, language other than English status, state of residence, and gender---all measured at age 4. Both numeracy achievement and verbal ability were z-scored in the analysis.
+Numeracy for the child and for their complete school grade was taken from administration records of National Assessment Program -- Literacy and Numeracy (NAPLAN) test results. The relevant NAPLAN tests for this study are given to all eligible children in the country in Year 3 (age 8). The tests are scaled so they are comparable across age cohort and across year grade. These high-stakes tests have a mean of 500 and a standard deviation of 100. Included in the analysis was the first principal component of the numeracy, grammar, spelling, reading, and writing scores from NAPLAN[^3]. For verbal ability we used the Peabody Picture Vocabulary test [@dunn2007] given to participants at age 4 (i.e., at or just before school commencement). Cohort was included as a covariate in all models as was measures of rural status, Indigenous status, language other than English status, state of residence, and gender---all measured at age 4. The sector (government or non-government) of the school the child attended was also included as a covariate.
+
+[^3]: Parallel analysis suggested a single principal component was sufficient to account for the variation in the NAPLAN scores.
 
 ## Analysis
 
-There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by using applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less. To account for this, we constructed 10 imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These 10 imputations were used in all analyses. All models used cluster robust standard errors to adjust standard errors for school clustering. LSAC strata was included as a fixed effect to account for the complex survey structure of the data. Analysis was done in the Zelig package in R [@imai2008].
+There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by using applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less. To account for this, we constructed five imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These imputations were used in all analyses. All analyses were done using Bayes via the BRMS package in R [@bürkner2017].
 
-All models in the paper that predicted social skills were estimated using Tobit models. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails (see [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. Johnson-Neyman regions of significance were used to investigate significant interactions. We also attempted to run random-intercept models using for school id both maximum likelihood estimation and MCMC sampling. In both cases models did not converge likely due to the unique nature of the data (i.e., many participants were the single representative of their school).
+All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobi regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails (see [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. Johnson-Neyman regions of significance were used to investigate significant interactions. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools.
 
 Contextual effects like those reported here can be confusing to interpret. This is because positive effects of contextual variables can be incorrectly interpreted as positive in implication (or vice-versa for negative effects). This issue is compounded when interactions involving contextual effects are included in the model. Thus, we also provide counterfactual estimates of expected score differences for different levels of student SES and school average SES when the interaction between these variables is significant. Because of the number of covariates (35 in total because many of the covariates, such as strata, were categorical and thus were included as a series of dummy variables), we only report results for the main analysis variables.
 
@@ -179,4 +187,5 @@ The influence of school average socioeconomic status on social skills represent 
 :::
 
 \endgroup
->>>>>>> 76a9308631048ea51918fe017cdcc2e8d7af4a52
+
+> > > > > > > 76a9308631048ea51918fe017cdcc2e8d7af4a52

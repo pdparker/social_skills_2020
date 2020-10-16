@@ -154,6 +154,79 @@ make_codebook <- function(data){
   return(here::here("data",glue::glue("{Sys.Date()}_codebook.pdf")))
 }
 
+consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievement_data, school_achievement_data)) {
+  child_data = reduce(data_list,left_join, by = "cid")
+  
+  total = nrow(child_data)
+  excluded_grade = nrow(child_data %>% filter(grade != 19) )
+  excluded_eligable = nrow(child_data %>% filter(status > 3) )
+  excluded_home = nrow(child_data %>% filter(!is.na(sid)) )
+  include = nrow(reduce(data_list,left_join, by = "cid") %>% filter(status < 4,grade == 19,!is.na(sid)))
+  
+  a1 <- glue::glue('Total available participants at age 4\n(n = {total})')
+  b1 <- ''
+  c1 <- ''
+  d1 <- ''
+  e1 <- glue::glue('Included for analysis\n(n = {include})')
+  f1 <- 'Data linked with\nadministrative data (NAPLAN; MySchool)'
+  
+  a2 <- ''
+  b2 <- glue::glue('Excluded because of\nwrong school grade (n = {excluded_grade})')
+  c2 <- glue::glue('Excluded because of\nnot eligable for NAPLAN test (n = {excluded_eligable})')
+  d2 <- glue::glue('Excluded because of\nout of school (n = {excluded_home})')
+  e2 <- ''
+  f2 <- ''
+  
+  #Create a node dataframe
+  ndf <- create_node_df(
+    n = 12,
+    label = c(a1, b1, c1, d1, e1, f1, #Column 1
+              a2, b2, c2, d2, e2, f2), #Column 2
+    style = rep('solid',12),
+    shape = rep('box',12),
+    # style = c('solid', 'invis', 'invis','invis', 'solid', 'solid', #Column 1
+    #           'invis', 'solid', 'solid', 'solid','invis', 'invis'), #Column 2
+    # shape = c('box', 'point', 'point', 'point','box','box', #Column 1 
+    #           'plaintext', 'box', 'box','box', 'point', 'point'), #Column 2
+    # width = c(3, 0.001, 0.001, 0.001,3, 3, #Column 1
+    #           2.5, 2.5, 2.5, 2.5, 0.001, 0.001), #Column 2
+    # height = c(1, 0.001, 0.001, 0.001, 1, 1, #Column 1
+    #            1, 1, 1,1, 0.001, 0.001), #Column 2
+    fontsize = c(rep(10, 12)),
+    fontname = c(rep('Times New Roman', 12)),
+    #penwidth = 1.5,
+    fixedsize = 'true')
+  
+  #Create an edge dataframe
+  edf <- create_edge_df(
+    from = c(1, 2, 3, 4, 5, #Column 1
+             7, 8, 9, 10, 11, #Column 2
+             2, 3, 4 #Horizontals
+    ),
+    to = c(2, 3, 4, 5, 6, #Column 1
+           8, 9, 10, 11, 12,#Column 2
+           7, 8, 9 #Horizontals
+    ),
+    arrowhead = c('none', 'none','none', 'normal', 'normal', #Column 1
+                  'none', 'none', 'none', 'none','none', #Column 2
+                  'normal', 'normal', 'normal' #Horizontals
+    ),
+    color = c('black', 'black', 'black', 'black', 'black', #Column 1
+              '#00000000', '#00000000', '#00000000', '#00000000', '#00000000',#Column 2
+              'black', 'black', 'black' #Horizontals
+    ),
+    constraint = c(rep('true', 10), #Columns
+                   rep('false', 3) #Horizontals
+    )
+  )
+  
+  g <- create_graph(ndf,
+                    edf,
+                    attr_theme = NULL)
+  #render_graph(g)
+  return(g)
+}
+
 
 data_imp <- function(data){
   set.seed(1234)
@@ -188,10 +261,15 @@ models <- function(d = data_imp, outcome = c("peer","social","conduct"), source 
         )
       )
     # Run model
-    m <- brms::brm_multiple(outcome|cens(censored)~ses_sch + ses + prior + cohort + gender + geo + 
+    m1 = brms::brm_multiple(outcome|cens(censored)~ses_sch + ses + prior + cohort + gender + geo + 
                                ach + sector +  (1|sid), data = data, cores =4,
                             control = list(adapt_delta = delta), iter = iterations)
-    return(m)
+    m2 = brms::brm_multiple(outcome|cens(censored)~ses_sch*ses + prior + cohort + gender + geo + 
+                               ach + sector +  (1|sid), data = data, cores =4,
+                             control = list(adapt_delta = delta), iter = iterations)
+    return(
+      list(linear = m1, interaction = m2)
+      )
   }
   
   

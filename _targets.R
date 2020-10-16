@@ -1,7 +1,7 @@
 library(targets)
 source(here::here("R","functions.R"))
 options(tidyverse.quiet = TRUE)
-tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue"))
+tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms"))
 tar_pipeline(
   tar_target(
     age_4_data,
