@@ -1,7 +1,10 @@
 library(targets)
+
 source(here::here("R","functions.R"))
 options(tidyverse.quiet = TRUE)
-tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms"))
+tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms",
+                            "DiagrammeR","DiagrammeR", "rsvg")
+               )
 tar_pipeline(
   tar_target(
     age_4_data,
@@ -26,6 +29,11 @@ tar_pipeline(
   tar_target(
     codebook,
     make_codebook(data),
+    format = "file"
+  ),
+  tar_target(
+    flow,
+    consort_flow(data_list = list(age_4_data, age_8_data, child_achievement_data, school_achievement_data)),
     format = "file"
   ),
   tar_target(

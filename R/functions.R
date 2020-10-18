@@ -225,12 +225,11 @@ consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievem
       [11]: ''
       [12]: ''
       ")
-  #library(DiagrammeRsvg)#
-  #library(rsvg)#
+
   grViz(mod) %>%
     export_svg %>% charToRaw %>% rsvg_png("graph.png")
   
-  return(here::here("data",glue::glue("{Sys.Date()}_codebook.pdf")))
+  return(here::here("fig","flow.png"))
   
 }
 
