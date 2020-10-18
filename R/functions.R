@@ -160,71 +160,78 @@ consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievem
   total = nrow(child_data)
   excluded_grade = nrow(child_data %>% filter(grade != 19) )
   excluded_eligable = nrow(child_data %>% filter(status > 3) )
-  excluded_home = nrow(child_data %>% filter(!is.na(sid)) )
+  excluded_home = nrow(child_data %>% filter(is.na(sid)) )
   include = nrow(reduce(data_list,left_join, by = "cid") %>% filter(status < 4,grade == 19,!is.na(sid)))
   
-  a1 <- glue::glue('Total available participants at age 4\n(n = {total})')
+  a1 <- glue::glue("\'Total available participants at age 4 \\n (n = {total})\'")
   b1 <- ''
   c1 <- ''
   d1 <- ''
-  e1 <- glue::glue('Included for analysis\n(n = {include})')
-  f1 <- 'Data linked with\nadministrative data (NAPLAN; MySchool)'
+  e1 <- glue::glue("\'Included for analysis\\n(n = {include})\'")
+  f1 <- glue::glue("'Data linked with administrative data \\n (NAPLAN; MySchool)'")
   
   a2 <- ''
-  b2 <- glue::glue('Excluded because of\nwrong school grade (n = {excluded_grade})')
-  c2 <- glue::glue('Excluded because of\nnot eligable for NAPLAN test (n = {excluded_eligable})')
-  d2 <- glue::glue('Excluded because of\nout of school (n = {excluded_home})')
+  b2 <- glue::glue("\'Excluded: \\nWrong school grade\\n (n = {excluded_grade})\'")
+  c2 <- glue::glue("\'Excluded: \\nNot eligable for NAPLAN test\\n (n = {excluded_eligable})\'")
+  d2 <- glue::glue("\'Excluded: \\nSchool Uncertain\\n (n = {excluded_home})\'")
   e2 <- ''
   f2 <- ''
   
-  #Create a node dataframe
-  ndf <- create_node_df(
-    n = 12,
-    label = c(a1, b1, c1, d1, e1, f1, #Column 1
-              a2, b2, c2, d2, e2, f2), #Column 2
-    style = rep('solid',12),
-    shape = rep('box',12),
-    # style = c('solid', 'invis', 'invis','invis', 'solid', 'solid', #Column 1
-    #           'invis', 'solid', 'solid', 'solid','invis', 'invis'), #Column 2
-    # shape = c('box', 'point', 'point', 'point','box','box', #Column 1 
-    #           'plaintext', 'box', 'box','box', 'point', 'point'), #Column 2
-    # width = c(3, 0.001, 0.001, 0.001,3, 3, #Column 1
-    #           2.5, 2.5, 2.5, 2.5, 0.001, 0.001), #Column 2
-    # height = c(1, 0.001, 0.001, 0.001, 1, 1, #Column 1
-    #            1, 1, 1,1, 0.001, 0.001), #Column 2
-    fontsize = c(rep(10, 12)),
-    fontname = c(rep('Times New Roman', 12)),
-    #penwidth = 1.5,
-    fixedsize = 'true')
+  mod <- paste("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Times, shape = rectangle, fontsize = 12]        
+      tab1 [label = '@@1', width = 2.5, height = 1]
+      tab2 [label = '@@2', style = invis, shape = point, width = 0.001, height = 0.001]
+      tab3 [label = '@@3', style = invis, shape = point, width = 0.001, height = 0.001]
+      tab4 [label = '@@4', style = invis, shape = point, width = 0.001, height = 0.001]
+      tab5 [label = '@@5', width = 2.5, height = 1]
+      tab6 [label = '@@6', width = 2.5, height = 1]
+      tab7 [label = '@@7', style = invis, shape = plaintext, width = 0.001, height = 0.001]
+      tab8 [label = '@@8', width = 2.5, height = 1]
+      tab9 [label = '@@9', width = 2.5, height = 1]
+      tab10 [label = '@@10', width = 2.5, height = 1]
+      tab11 [label = '@@11', style = invis, shape = point, width = 0.001, height = 0.001]
+      tab12 [label = '@@12', style = invis, shape = point, width = 0.001, height = 0.001]
+
+      # edge definitions with the node IDs
+      edge[weight=2]
+      tab1 -> tab2 [arrowhead = none, constraint = TRUE];
+      tab2 -> tab3[arrowhead = none, constraint = TRUE];
+      tab3 -> tab4[arrowhead = none, constraint = TRUE];
+      tab4 -> tab5[constraint = TRUE];
+      tab5 -> tab6[constraint = TRUE];
+      
+      tab7 -> tab8 [style = invis, constraint = TRUE];
+      tab8 -> tab9 [style = invis, constraint = TRUE];
+      tab9 -> tab10 [style = invis, constraint = TRUE];
+      tab10 -> tab11 [style = invis, constraint = TRUE];
+      tab11 -> tab12 [style = invis, constraint = TRUE];
+      edge[weight=1]
+      {rank=same; constraint = FALSE; tab2 -> tab8}
+      {rank=same; constraint = FALSE; tab3 -> tab9}
+      {rank=same; constraint = FALSE; tab4 -> tab10}
+}
+      
+      [1]: ",a1,"
+      [2]: ''
+      [3]: ''
+      [4]: ''
+      [5]: ", e1,"
+      [6]: ",f1,"
+      [7]: ''
+      [8]: ",b2,"
+      [9]: ",c2,"
+      [10]: ",d2,"
+      [11]: ''
+      [12]: ''
+      ")
+  #library(DiagrammeRsvg)#
+  #library(rsvg)#
+  grViz(mod) %>%
+    export_svg %>% charToRaw %>% rsvg_png("graph.png")
   
-  #Create an edge dataframe
-  edf <- create_edge_df(
-    from = c(1, 2, 3, 4, 5, #Column 1
-             7, 8, 9, 10, 11, #Column 2
-             2, 3, 4 #Horizontals
-    ),
-    to = c(2, 3, 4, 5, 6, #Column 1
-           8, 9, 10, 11, 12,#Column 2
-           7, 8, 9 #Horizontals
-    ),
-    arrowhead = c('none', 'none','none', 'normal', 'normal', #Column 1
-                  'none', 'none', 'none', 'none','none', #Column 2
-                  'normal', 'normal', 'normal' #Horizontals
-    ),
-    color = c('black', 'black', 'black', 'black', 'black', #Column 1
-              '#00000000', '#00000000', '#00000000', '#00000000', '#00000000',#Column 2
-              'black', 'black', 'black' #Horizontals
-    ),
-    constraint = c(rep('true', 10), #Columns
-                   rep('false', 3) #Horizontals
-    )
-  )
+  return(here::here("data",glue::glue("{Sys.Date()}_codebook.pdf")))
   
-  g <- create_graph(ndf,
-                    edf,
-                    attr_theme = NULL)
-  #render_graph(g)
-  return(g)
 }
 
 
