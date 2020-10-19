@@ -227,7 +227,7 @@ consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievem
       ")
 
   grViz(mod) %>%
-    export_svg %>% charToRaw %>% rsvg_png("graph.png")
+    export_svg %>% charToRaw %>% rsvg_png(here::here("fig","flow.png"))
   
   return(here::here("fig","flow.png"))
   
