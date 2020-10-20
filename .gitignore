@@ -3,6 +3,9 @@
 .RData
 .Ruserdata
 .tex
+.ttt
+.gz
+.log
 
 # Google Drive Stuff
 desktop.ini

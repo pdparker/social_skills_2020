@@ -3,7 +3,7 @@ library(targets)
 source(here::here("R","functions.R"))
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms",
-                            "DiagrammeR","DiagrammeR", "rsvg")
+                            "DiagrammeR","DiagrammeR", "rsvg", "ggtext", "tarchetypes")
                )
 tar_pipeline(
   tar_target(
@@ -63,5 +63,45 @@ tar_pipeline(
   tar_target(
     social_teach,
     models(data_imp, outcome = "social", source = "teach")
+  ),
+  tar_target(
+    linear_table,
+    linear_output(list(conduct_teach, social_teach, peer_teach,
+                       conduct_par, social_par, peer_par))
+  ),
+  tar_target(
+    interaction_table,
+    interaction_output(list(conduct_teach, social_teach, peer_teach,
+                       conduct_par, social_par, peer_par))
+  ),
+  tar_target(
+    peer_par_plot,
+    plots(peer_par),
+    format = "file"
+  ),
+  tar_target(
+    conduct_par_plot,
+    plots(conduct_par),
+    format = 'file'
+  ),
+  tar_target(
+    social_par_plot,
+    plots(social_par),
+    format = 'file'
+  ),
+  tar_target(
+    peer_teach_plot,
+    plots(peer_teach),
+    format = "file"
+  ),
+  tar_target(
+    conduct_teach_plot,
+    plots(conduct_teach),
+    format = "file"
+  ),
+  tar_target(
+    social_teach_plot,
+    plots(social_teach),
+    format = "file"
   )
 )

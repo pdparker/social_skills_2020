@@ -100,7 +100,23 @@ We expect the assimilation effects to occur in the context of low SES children e
 
 ## Participants and Study Design
 
-We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC is a complex survey with a stratified sampling design (that we account for in all analyses) and includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (27%) or were one of two children surveyed (36%) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in most school context research. We excluded participants who were not in school (e.g., were home schooled), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was 5,361 (52.1% male) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. A participant flow diagram is present end in <!--# include figure 1 --> including the number of participants excluded because there were a) not in Year 3 during the age 8 LSAC data collection sweep; b) were not eligible to participate NAPLAN (e.g., due to intellectual disability; or c) were not enrolled in school (e.g., were home schooled).
+```{r participants}
+library(targets)
+library(scales)
+tar_load(data)
+school_no = table(data$sid) %>%
+  table()
+
+school_one = as.vector(school_no[1]*1/nrow(data)) %>% scales::percent(accuracy = .01)
+school_two = as.vector(school_no[2]*2/nrow(data)) %>% scales::percent(accuracy = .01)
+boys = as.vector(table(data$gender)[1]/nrow(data)) %>% scales::percent(accuracy = .01)
+```
+
+```{r consort,fig.height=4,fig.width=2, fig.cap = 'Participant flow diagramme'}
+knitr::include_graphics(here::here('fig','flow.pdf'))
+```
+
+We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (`r school_one`) or were one of two children surveyed (`r school_two`) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in most school context research. We excluded participants who were not in school (e.g., were home schooled, or were otherwise missing an identifier of which school they attended), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was `r nrow(data)` (`r boys` boys) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. A participant flow diagram is present end in Figure \@ref(fig:consort) including the number of participants excluded because there were a) not in Year 3 during the age 8 LSAC data collection sweep; b) were not eligible to participate NAPLAN (e.g., due to intellectual disability; or c) were not enrolled in school (e.g., were home schooled).
 
 ## Measures
 
@@ -126,9 +142,7 @@ Numeracy for the child and for their complete school grade was taken from admini
 
 There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by using applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less. To account for this, we constructed five imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These imputations were used in all analyses. All analyses were done using Bayes via the BRMS package in R [@bürkner2017].
 
-All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobi regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails (see [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. Johnson-Neyman regions of significance were used to investigate significant interactions. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools.
-
-Contextual effects like those reported here can be confusing to interpret. This is because positive effects of contextual variables can be incorrectly interpreted as positive in implication (or vice-versa for negative effects). This issue is compounded when interactions involving contextual effects are included in the model. Thus, we also provide counterfactual estimates of expected score differences for different levels of student SES and school average SES when the interaction between these variables is significant. Because of the number of covariates (35 in total because many of the covariates, such as strata, were categorical and thus were included as a series of dummy variables), we only report results for the main analysis variables.
+All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobit regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails ([see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools.
 
 # Results
 
@@ -136,9 +150,33 @@ Contextual effects like those reported here can be confusing to interpret. This 
 
 In order to provide a context for the main analyses we first aimed to show a) that richer children enter school with better social skills (as measured by their parents) and b) that children in Australia tend to be schooled in socially stratified schools. Our findings show that high SES children do enter school with better social skills. Student SES is correlated with less peer (B = -.284 [-.345, -.222]) and conduct (B = -.371 [-.438, -.304]) problems. They also had slightly higher prosocial behavior (B = .074 [.009, .139 ]). Further, student SES was strongly related to the school average SES of the school they attended (r = .480 [.458, .499]; see Figure 1).
 
+```{r table-1, caption='Effect of School Average SES on Social Skills',results='asis'}
+tar_load(linear_table)
+library(gt)
+library(tidyMB)
+
+linear_table %>%
+  gt() %>%
+  fmt_number(columns = 3:5, decimals = 3) %>%
+  apa_style(title = 'Table 1', subtitle = 'Effect of School Average SES on Social Skills') %>%
+  as_latex()
+```
+
 ## School Average SES Predicts Social Skills Controlling for Age 4 SES and Social Skills
 
-We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results are presented under the Model 1 column in Tables 1-3. Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems but only for parent reports.
+We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results are presented under in Table\\ \@ref(tab:table-1). Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems but only for parent reports.
+
+```{r table-2, caption='Effect of School Average SES by Student SES on Social Skills',results='asis'}
+tar_load(interaction_table)
+library(gt)
+library(tidyMB)
+
+interaction_table %>%
+  gt() %>%
+  fmt_number(columns = 3:5, decimals = 3) %>%
+  apa_style(title = 'Table 2', subtitle = 'Effect of School Average SES by Student SES on Social Skills') %>%
+  as_latex()
+```
 
 ## School Average SES Predicts Social Skills Mainly in Low SES Children
 
@@ -187,5 +225,3 @@ The influence of school average socioeconomic status on social skills represent 
 :::
 
 \endgroup
-
-> > > > > > > 76a9308631048ea51918fe017cdcc2e8d7af4a52

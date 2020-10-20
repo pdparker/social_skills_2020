@@ -155,6 +155,7 @@ make_codebook <- function(data){
 }
 
 consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievement_data, school_achievement_data)) {
+  
   child_data = reduce(data_list,left_join, by = "cid")
   
   total = nrow(child_data)
@@ -212,24 +213,26 @@ consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievem
       {rank=same; constraint = FALSE; tab4 -> tab10}
 }
       
-      [1]: ",a1,"
+      [1]: ", a1,"
       [2]: ''
       [3]: ''
       [4]: ''
       [5]: ", e1,"
-      [6]: ",f1,"
+      [6]: ", f1,"
       [7]: ''
-      [8]: ",b2,"
-      [9]: ",c2,"
+      [8]: ", b2,"
+      [9]: ", c2,"
       [10]: ",d2,"
       [11]: ''
       [12]: ''
       ")
 
-  grViz(mod) %>%
-    export_svg %>% charToRaw %>% rsvg_png(here::here("fig","flow.png"))
+  DiagrammeR::grViz(mod) %>%
+    DiagrammeRsvg::export_svg() %>%
+    charToRaw %>%
+    rsvg::rsvg_pdf(here::here("fig","flow.pdf"))
   
-  return(here::here("fig","flow.png"))
+  return(here::here("fig","flow.pdf"))
   
 }
 
@@ -279,5 +282,102 @@ models <- function(d = data_imp, outcome = c("peer","social","conduct"), source 
   }
   
   
-  
+
 }
+
+
+linear_output <- function(model_list = list(conduct_teach, social_teach, peer_teach,
+                          conduct_par, social_par, peer_par)) {
+  out = model_list %>%
+    map(`[[`,'linear') %>%
+    map_dfr(broom.mixed::tidy, .id = "model") %>%
+    filter(term == 'ses_sch') %>%
+    mutate(model = case_when(
+      model == 1 ~ "conduct_teacher",
+      model == 2 ~ "social_teacher",
+      model == 3 ~ "peer_teacher",
+      model == 4 ~ "conduct_parent",
+      model == 5 ~ "social_parent",
+      model == 6 ~ "peer_parent"
+    )) %>%
+    tidyr::separate(model, into = c('Outcome', 'Report Source')) %>%
+    select(Outcome,`Report Source`, Estimate = estimate,
+           `-95% CI` = conf.low,`+95% CI` = conf.high)
+  
+  return(out)
+}
+
+interaction_output <- function(model_list = list(conduct_teach, social_teach, peer_teach,
+                                            conduct_par, social_par, peer_par)) {
+  out = model_list %>%
+    map(`[[`,'interaction') %>%
+    map_dfr(broom.mixed::tidy, .id = "model") %>%
+    filter(term %in% c('ses_sch', 'ses_sch:ses') ) %>%
+    mutate(model = case_when(
+      model == 1 ~ "conduct_teacher",
+      model == 2 ~ "social_teacher",
+      model == 3 ~ "peer_teacher",
+      model == 4 ~ "conduct_parent",
+      model == 5 ~ "social_parent",
+      model == 6 ~ "peer_parent"
+    )) %>%
+    tidyr::separate(model, into = c('Outcome', 'Report Source')) %>%
+    select(Outcome,`Report Source`, Estimate = estimate,
+           `-95% CI` = conf.low,`+95% CI` = conf.high)
+  
+  return(out)
+}
+
+plots <- function(model=conduct_teach){
+  nm <- deparse(substitute(model)) %>%
+    str_split(., "_",simplify = TRUE) %>% 
+    str_to_sentence()
+  
+  source <- ifelse(nm[2] == "teach", "Teacher", "Parent")
+  outcome <- case_when(
+    nm[1] == 'Conduct' ~ "Conduct Problems",
+    nm[1] == 'Social' ~ "Prosociality",
+    nm[1] == 'Peer' ~ "Peer Problems",
+  )
+  
+  conditions <- data.frame(ses = c(-2, 0, 2))
+  
+  plot(brms::conditional_effects(model$interaction,'ses_sch:ses',
+                                 spaghetti = T, nsamples = 500, 
+                                 int_conditions = conditions))[[1]] +
+    labs(title = glue::glue('{source} Reported {outcome}'),
+         subtitle = "<span style='color:red'>High (+2 SD)</span>, <span style='color:green'>Average</span>, and <span style='color:blue'>Low (-2 SD)</span> SES Children",
+         color = "SES (S.D. Units",
+         y = "Outcome",
+         x = "School Average SES") +
+    tidyMB::theme_mb() +
+    theme(
+      plot.subtitle = element_markdown()
+    )
+  
+  ggsave(here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")),
+         dpi = 300, width = 6, height = 4)
+  
+  return(here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")))
+}
+
+
+full_model_output <- function(model = conduct_teach) {
+  out = model %>%
+    map_dfr(broom.mixed::tidy, .id = "model") %>%
+    #filter(term == 'ses_sch') %>%
+    mutate(model = case_when(
+      model == 1 ~ "conduct_teacher",
+      model == 2 ~ "social_teacher",
+      model == 3 ~ "peer_teacher",
+      model == 4 ~ "conduct_parent",
+      model == 5 ~ "social_parent",
+      model == 6 ~ "peer_parent"
+    )) %>%
+    tidyr::separate(model, into = c('Outcome', 'Report Source')) %>%
+    select(Outcome,`Report Source`, Estimate = estimate,
+           `-95% CI` = conf.low,`+95% CI` = conf.high)
+  
+  return(out)
+}
+
