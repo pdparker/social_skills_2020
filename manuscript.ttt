@@ -1,0 +1,40 @@
+\begin{longtable}{llrrr}
+\caption*{
+\large Table 1\\
+\small Effect of School Average SES on Social Skills\\
+} \\
+\toprule
+Outcome & Report Source & Estimate & -95\% CI & +95\% CI \\
+\midrule
+conduct & teacher & $-0.153$ & $-0.259$ & $-0.043$ \\
+social & teacher & $0.148$ & $0.053$ & $0.243$ \\
+peer & teacher & $-0.116$ & $-0.204$ & $-0.027$ \\
+conduct & parent & $-0.108$ & $-0.172$ & $-0.045$ \\
+social & parent & $0.087$ & $0.015$ & $0.157$ \\
+peer & parent & $-0.134$ & $-0.206$ & $-0.063$ \\
+\bottomrule
+\end{longtable}
+\efloatseparator
+ 
+\begin{longtable}{llrrr}
+\caption*{
+\large Table 2\\
+\small Effect of School Average SES by Student SES on Social Skills\\
+} \\
+\toprule
+Outcome & Report Source & Estimate & -95\% CI & +95\% CI \\
+\midrule
+conduct & teacher & $-0.160$ & $-0.269$ & $-0.049$ \\
+conduct & teacher & $0.151$ & $0.063$ & $0.239$ \\
+social & teacher & $0.156$ & $0.060$ & $0.250$ \\
+social & teacher & $-0.094$ & $-0.170$ & $-0.018$ \\
+peer & teacher & $-0.125$ & $-0.214$ & $-0.036$ \\
+peer & teacher & $0.116$ & $0.041$ & $0.189$ \\
+conduct & parent & $-0.112$ & $-0.174$ & $-0.049$ \\
+conduct & parent & $0.059$ & $0.006$ & $0.112$ \\
+social & parent & $0.090$ & $0.020$ & $0.159$ \\
+social & parent & $-0.031$ & $-0.088$ & $0.026$ \\
+peer & parent & $-0.143$ & $-0.214$ & $-0.071$ \\
+peer & parent & $0.118$ & $0.058$ & $0.177$ \\
+\bottomrule
+\end{longtable}

@@ -159,12 +159,13 @@ linear_table %>%
   gt() %>%
   fmt_number(columns = 3:5, decimals = 3) %>%
   apa_style(title = 'Table 1', subtitle = 'Effect of School Average SES on Social Skills') %>%
+  tab_header(label = "tab:table-1")
   as_latex()
 ```
 
 ## School Average SES Predicts Social Skills Controlling for Age 4 SES and Social Skills
 
-We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results are presented under in Table\\ \@ref(tab:table-1). Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems but only for parent reports.
+We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results are presented under in Table \@ref(tab:table-1). Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems but only for parent reports.
 
 ```{r table-2, caption='Effect of School Average SES by Student SES on Social Skills',results='asis'}
 tar_load(interaction_table)

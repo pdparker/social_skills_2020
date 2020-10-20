@@ -1,0 +1,7 @@
+\begin{figure*}[hbt]
+\ifnextchar[{\eatarg}{}
+
+\centering
+\includegraphics{/Users/phparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skills_2020/fig/flow.pdf}
+\caption{\label{fig:consort}Participant flow diagramme}
+\end{figure*}
