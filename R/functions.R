@@ -329,6 +329,7 @@ interaction_output <- function(model_list = list(conduct_teach, social_teach, pe
 }
 
 plots <- function(model=conduct_teach){
+  
   nm <- deparse(substitute(model)) %>%
     str_split(., "_",simplify = TRUE) %>% 
     str_to_sentence()
@@ -342,41 +343,61 @@ plots <- function(model=conduct_teach){
   
   conditions <- data.frame(ses = c(-2, 0, 2))
   
-  plot(brms::conditional_effects(model$interaction,'ses_sch:ses',
+  p = plot(brms::conditional_effects(model$interaction,'ses_sch:ses',
                                  spaghetti = T, nsamples = 500, 
                                  int_conditions = conditions))[[1]] +
-    labs(title = glue::glue('{source} Reported {outcome}'),
-         subtitle = "<span style='color:red'>High (+2 SD)</span>, <span style='color:green'>Average</span>, and <span style='color:blue'>Low (-2 SD)</span> SES Children",
-         color = "SES (S.D. Units",
-         y = "Outcome",
-         x = "School Average SES") +
+    labs(#title = glue::glue('{source} Reported {outcome}'),
+         #subtitle = "<span style='color:red'>High (+2 SD)</span>, <span style='color:green'>Average</span>, and <span style='color:blue'>Low (-2 SD)</span> SES Children",
+         color = "SES (Units: SD)",
+         y = "Outcome (Units: censorded 0-10)",
+         x = "School Average SES (Units: SD)") +
     tidyMB::theme_mb() +
     theme(
-      plot.subtitle = element_markdown()
-    )
+      legend.key = element_blank(),
+      plot.subtitle = element_markdown(),
+      legend.position = "bottom",
+      legend.background = element_rect(fill="white", color = "white")
+    ) 
   
-  ggsave(here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")),
+  ggsave(plot = p, filename = here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")),
          dpi = 300, width = 6, height = 4)
-  
-  return(here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")))
+  # 
+  # return(here::here("fig", glue::glue("interaction_{nm[1]}_{nm[2]}.png")))
+  # 
+  return(p)
 }
 
 
 full_model_output <- function(model = conduct_teach) {
+  
+  nm <- deparse(substitute(model)) %>%
+    str_split(., "_",simplify = TRUE) %>% 
+    str_to_sentence()
+  
+  source <- ifelse(nm[2] == "teach", "Teacher", "Parent")
+  outcome <- case_when(
+    nm[1] == 'Conduct' ~ "Conduct Problems",
+    nm[1] == 'Social' ~ "Prosociality",
+    nm[1] == 'Peer' ~ "Peer Problems",
+  )
+  
   out = model %>%
     map_dfr(broom.mixed::tidy, .id = "model") %>%
-    #filter(term == 'ses_sch') %>%
-    mutate(model = case_when(
-      model == 1 ~ "conduct_teacher",
-      model == 2 ~ "social_teacher",
-      model == 3 ~ "peer_teacher",
-      model == 4 ~ "conduct_parent",
-      model == 5 ~ "social_parent",
-      model == 6 ~ "peer_parent"
+    mutate(term = case_when(
+      term == '(Intercept)' ~ "Intercept (Units: Censored 0-10)",
+      term == 'ses_sch' ~ "School Average SES (Units: SD)",
+      term == 'ses' ~ "SES (Units: SD)",
+      term == 'prior' ~ glue::glue("Prior {outcome} (Units: 0-10)") %>% as.character(),
+      term == 'cohortK' ~ "Cohort K",
+      term == 'gendergirl' ~ "Girl",
+      term == 'geourban' ~ "Urban",
+      term == 'ach' ~ "Academic Achievement (Units: SD)",
+      term == 'sectorNonMGovernment' ~ "Non-government School",
+      term == 'sd__(Intercept)' ~ "Random Intercept (Units: SD)",
+      term == 'sch_ses:ses' ~ "School Average SES by Student SES"
     )) %>%
-    tidyr::separate(model, into = c('Outcome', 'Report Source')) %>%
-    select(Outcome,`Report Source`, Estimate = estimate,
-           `-95% CI` = conf.low,`+95% CI` = conf.high)
+    select(Predictor = term, Estimate = estimate,
+           `-95% CI` = conf.low,`+95% CI` = conf.high) 
   
   return(out)
 }

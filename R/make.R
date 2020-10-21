@@ -5,7 +5,7 @@ tar_make()
 # Check for outdated targets
 # tar_outdated()
 # Visualize status of the project
-#tar_glimpse()
+# tar_glimpse()
 
 
 

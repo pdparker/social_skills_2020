@@ -5,6 +5,7 @@ options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms",
                             "DiagrammeR","DiagrammeR", "rsvg", "ggtext", "tarchetypes")
                )
+
 tar_pipeline(
   tar_target(
     age_4_data,
@@ -76,32 +77,27 @@ tar_pipeline(
   ),
   tar_target(
     peer_par_plot,
-    plots(peer_par),
-    format = "file"
+    plots(peer_par)
   ),
   tar_target(
     conduct_par_plot,
-    plots(conduct_par),
-    format = 'file'
+    plots(conduct_par)
   ),
   tar_target(
     social_par_plot,
-    plots(social_par),
-    format = 'file'
+    plots(social_par)
   ),
   tar_target(
     peer_teach_plot,
-    plots(peer_teach),
-    format = "file"
+    plots(peer_teach)
   ),
   tar_target(
     conduct_teach_plot,
-    plots(conduct_teach),
-    format = "file"
+    plots(conduct_teach)
   ),
   tar_target(
     social_teach_plot,
-    plots(social_teach),
-    format = "file"
-  )
+    plots(social_teach)
+  ),
+  tarchetypes::tar_render(manuscript,"manuscript.Rmd")
 )

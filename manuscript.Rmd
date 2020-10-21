@@ -159,7 +159,6 @@ linear_table %>%
   gt() %>%
   fmt_number(columns = 3:5, decimals = 3) %>%
   apa_style(title = 'Table 1', subtitle = 'Effect of School Average SES on Social Skills') %>%
-  tab_header(label = "tab:table-1")
   as_latex()
 ```
 
@@ -175,13 +174,21 @@ library(tidyMB)
 interaction_table %>%
   gt() %>%
   fmt_number(columns = 3:5, decimals = 3) %>%
-  apa_style(title = 'Table 2', subtitle = 'Effect of School Average SES by Student SES on Social Skills') %>%
+  apa_style(title = 'Table 2',
+            subtitle = 'Effect of School Average SES by Student SES on Social Skills') %>%
   as_latex()
 ```
 
 ## School Average SES Predicts Social Skills Mainly in Low SES Children
 
-The predictive association of school average SES on social skills was not consistent across the SES gradient (see Model 2 results reported in Tables 1-3). Significant school average SES by student SES interactions were significant for peer and conduct problems for both teacher and parent reports and for teacher reported prosocial behavior. Regions of significance for these interactions can be found in Figures 2-4. Likewise, counterfactual expected score differences on the latent continuous social skill (underlying the censored social skill in the Tobit model) are given in Table 4. These results show that low SES children appear to be most influenced by school average SES. Middle to high SES children appeared to have largely similar scores regardless of the school they were in (see Figures 2-4). For example, both parents and teachers report that low SES children had approximately half a point more peer problems in more SES disadvantaged schools than in more SES advantaged schools (see Table 4). High SES children had almost no difference in peer problems regardless of the school they were in.
+The predictive association of school average SES on social skills was not consistent across the SES gradient (see Table 2). Significant school average SES by student SES interactions were significant for peer and conduct problems for both teacher and parent reports and for teacher reported prosocial behavior. Interactions are plotted in Figures 2-4. Likewise, counterfactual expected score differences on the latent continuous social skill (underlying the censored social skill in the Tobit model) are given in Table 4. These results show that low SES children appear to be most influenced by school average SES. Middle to high SES children appeared to have largely similar scores regardless of the school they were in (see Figures 2-4). For example, both parents and teachers report that low SES children had approximately half a point more peer problems in more SES disadvantaged schools than in more SES advantaged schools (see Table 4). High SES children had almost no difference in peer problems regardless of the school they were in.
+
+```{r conduct}
+library(patchwork)
+tar_load(social_par_plot)
+tar_load(social_teach_plot)
+social_par_plot + social_teach_plot + plot_layout(guides = "collect")  & theme(legend.position = 'bottom')
+```
 
 # Discussion
 
