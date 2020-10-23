@@ -3,7 +3,8 @@ library(targets)
 source(here::here("R","functions.R"))
 options(tidyverse.quiet = TRUE)
 tar_option_set(packages = c("readit", "tidyverse", "dataMaid","here", "glue", "brms",
-                            "DiagrammeR","DiagrammeR", "rsvg", "ggtext", "tarchetypes")
+                            "DiagrammeR","DiagrammeR", "rsvg", "ggtext", "tarchetypes",
+                            "psych")
                )
 
 tar_pipeline(
@@ -99,5 +100,20 @@ tar_pipeline(
     social_teach_plot,
     plots(social_teach)
   ),
-  tarchetypes::tar_render(manuscript,"manuscript.Rmd")
+  tar_target(
+    reliability,
+    index_run(data)
+  ),
+  tar_target(
+    des_conduct,
+    ses_beta(d = data_imp, outcome = 'conduct')
+  ),
+  tar_target(
+    des_peer,
+    ses_beta(d = data_imp, outcome = 'peer')
+  ),
+  tar_target(
+    des_social,
+    ses_beta(d = data_imp, outcome = 'social')
+  )
 )

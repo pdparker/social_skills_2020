@@ -236,6 +236,50 @@ consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievem
   
 }
 
+index_fun <- function(data = data, age = c("4","8"), variable = c("social", "peer", "conduct","social_t", "peer_t", "conduct_t")){
+  # Get ids from final data set
+  id = data$cid
+  # Choose id type
+  var = switch (variable,
+                social = 'se03a1',
+                peer = 'se03a5',
+                conduct = 'se03a4',
+                social_t = 'se03t1',
+                peer_t = 'se03t5',
+                conduct_t = 'se03t4'
+  )
+  
+  if(age == "4") {
+    
+    db = readit::readit(here::here("data", "lsacgrb4.sas7bdat")) %>% select(contains(var), cid = hicid)
+    dk = readit::readit(here::here("data", "lsacgrk4.sas7bdat")) %>% select(contains(var), cid = hicid)
+    
+  } else{
+    db = readit::readit(here::here("data", "lsacgrb8.sas7bdat")) %>% select(contains(var), cid = hicid)
+    dk = readit::readit(here::here("data", "lsacgrk8.sas7bdat")) %>% select(contains(var), cid = hicid)
+  }
+  
+  d = bind_rows(db,dk) %>%
+    mutate(total = rowSums(.), .before = 1) %>%
+    filter(cid %in% id) %>%
+    select(-cid)
+  
+  parallel = psych::fa.parallel(d[,-1])
+  glb = psych::glb(d[,-1])
+  
+  out = c(ncom = parallel$ncomp, glb = glb$glb.max)
+  
+  return(out)
+  
+}
+
+index_run <- function(data){
+  d = data
+  args = list(x = c(rep(c("4","8"),3),rep("8",3)), y = c(rep(c("social", "peer", "conduct"),each = 2), "social_t", "peer_t", "conduct_t"))
+  out = purrr::map2(.x = args$x,.y = args$y, .f = ~index_fun(data = d, age = .x, variable = .y)) %>%
+    bind_rows()
+}
+
 
 data_imp <- function(data){
   set.seed(1234)
@@ -247,6 +291,26 @@ data_imp <- function(data){
                            noms = c('geo', 'indig', 'gender', 'lang', 'cohort'),bounds = bound
   )
   return(data_imp)
+}
+
+ses_beta <- function(d = data_imp, outcome, m = 5, delta = 0.99, iterations = 6000){
+  
+  data = list()
+  for (i in 1:m){
+    tmp = data.frame(d$imputations[[i]])
+    data[[i]] = tmp %>%
+      select(
+        prior = glue::glue("prior_{outcome}"),
+        parent = glue::glue("par_{outcome}"),
+        teach = glue::glue("teach_{outcome}"),
+        ses, ses_sch
+      ) 
+  }
+  bf1 = brms::brm_multiple(scale(prior)~-1+scale(ses), cores = 4, data = data,family = gaussian,control = list(adapt_delta = delta), iter = iterations)
+  bf2 = brms::brm_multiple(scale(ses)~-1+scale(ses_sch), cores = 4, data = data,family = gaussian,control = list(adapt_delta = delta), iter = iterations)
+  bf3 = brms::brm_multiple(scale(parent)~-1+scale(teach), cores = 4, data = data,family = gaussian,control = list(adapt_delta = delta), iter = iterations)
+
+  return(list(prior_ses = summary(bf1),sch_ses = summary(bf2), agreement = summary(bf3)))
 }
 
 models <- function(d = data_imp, outcome = c("peer","social","conduct"), source = c("par","teach"), m = 5,
@@ -281,9 +345,10 @@ models <- function(d = data_imp, outcome = c("peer","social","conduct"), source 
       )
   }
   
-  
 
 }
+
+
 
 
 linear_output <- function(model_list = list(conduct_teach, social_teach, peer_teach,
@@ -311,8 +376,8 @@ interaction_output <- function(model_list = list(conduct_teach, social_teach, pe
                                             conduct_par, social_par, peer_par)) {
   out = model_list %>%
     map(`[[`,'interaction') %>%
-    map_dfr(broom.mixed::tidy, .id = "model") %>%
-    filter(term %in% c('ses_sch', 'ses_sch:ses') ) %>%
+    map_dfr(broom.mixed::tidy, .id = "model") %>% 
+    filter(term %in% c('ses_sch', 'ses_sch:ses', 'ses_sch:polyses21', 'ses_sch:polyses22') ) %>%
     mutate(model = case_when(
       model == 1 ~ "conduct_teacher",
       model == 2 ~ "social_teacher",
@@ -320,9 +385,15 @@ interaction_output <- function(model_list = list(conduct_teach, social_teach, pe
       model == 4 ~ "conduct_parent",
       model == 5 ~ "social_parent",
       model == 6 ~ "peer_parent"
+    ),
+    term = case_when(
+      term == 'ses_sch' ~ "School Average SES",
+      term == 'ses_sch:ses' ~ "School Average SES by Student SES",
+      term == 'ses_sch:polyses21' ~ "School Average SES by Student SES: Linear",
+      term == 'ses_sch:polyses22' ~ "School Average SES by Student SES: Quadratic",
     )) %>%
     tidyr::separate(model, into = c('Outcome', 'Report Source')) %>%
-    select(Outcome,`Report Source`, Estimate = estimate,
+    select(Outcome,`Report Source`,term, Estimate = estimate,
            `-95% CI` = conf.low,`+95% CI` = conf.high)
   
   return(out)
@@ -394,7 +465,9 @@ full_model_output <- function(model = conduct_teach) {
       term == 'ach' ~ "Academic Achievement (Units: SD)",
       term == 'sectorNonMGovernment' ~ "Non-government School",
       term == 'sd__(Intercept)' ~ "Random Intercept (Units: SD)",
-      term == 'sch_ses:ses' ~ "School Average SES by Student SES"
+      term == 'sch_ses:ses' ~ "School Average SES by Student SES",
+      term == 'ses_sch:polyses21' ~ "School Average SES by Student SES Linear",
+      term == 'ses_sch:polyses21' ~ "School Average SES by Student SES Quadratic",
     )) %>%
     select(Predictor = term, Estimate = estimate,
            `-95% CI` = conf.low,`+95% CI` = conf.high) 
