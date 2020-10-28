@@ -1,63 +1,72 @@
 ---
-title             : "School Socioeconomic Status Context and Social Skills in Children"
-shorttitle        : "School SES and Social Skills"
-author: 
-  - name          : "Philip Parker"
-    affiliation   : "1"
-    corresponding : yes    # Define only one corresponding author
-    address       : "33 Berry St, North Sydney, NSW, 2060, Australia"
-    email         : "philip.parker@acu.edu.au"
-    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
-      - Conceptualization
-      - Formal Analysis
-      - Writing - Original Draft Preparation
-      - Writing - Review & Editing
-  - name          : "Taren Sanders"
-    affiliation   : "1"
-    corresponding : no    # Define only one corresponding author
-    address       : "33 Berry St, North Sydney, NSW, 2060, Australia"
-    email         : "taren.sanders@acu.edu.au"
-    role:         # Contributorship roles (e.g., CRediT, https://casrai.org/credit/)
-      - Conceptualization
-      - Writing - Original Draft Preparation
-      - Writing - Review & Editing
-
-affiliation:
-  - id            : "1"
-    institution   : "Institute for Positive Psychology and Education, Australian Catholic University"
-  - id            : "2"
-    institution   : "UCL Institute of Education, UCL"
-authornote: |
-  Add complete departmental affiliations for each author here. Each new line herein must be indented, like this line.
-  Enter author note here.
-abstract: |
+title: "School Socioeconomic Status Context and Social Skills in Children"
+author:
   
-  As researchers and policymakers try to understand the consequences of SES for educational and occupational attainment, they increasingly consider social skills to be critical. Yet little research has considered how the school socio-economic context may differentially promote or hinder social skill development. In a representative longitudinal sample of 5361 Australian children, we tested the association between school average socioeconomic status and social skills as reported by parents and teachers. All models controlled for prior social skills at age 4, and a wide range of covariates. We found that school context was associated with social skill assimilation: controlling for individual socioeconomic status, children in more advantaged schools had more prosocial behavior and fewer peer and conduct problems. We found a consistent interaction between individual and school average socioeconomic status that suggested assimilation effects were only present for children from low socioeconomic backgrounds. We found that children from low socioeconomic backgrounds enter school with lower average social skills. They are more likely to be enrolled in more disadvantaged schools. Finally, the social skills of children from low socioeconomic backgrounds worsen in low SES contexts. Taking the evidence together, social stratified schools may harm children from low SES backgrounds while not benefiting children from high SES backgrounds.
-keywords          : "social skills; assimilation effects; socioeconomic status; school context"
-wordcount         : "X"
-bibliography      : ["r-references.bib"]
-floatsintext      : no
-figurelist        : no
-tablelist         : no
-footnotelist      : no
-linenumbers       : yes
-mask              : no
-draft             : no
-documentclass     : "apa6"
-classoption       : "man"
-output            : 
-  pdf: 
-    papaja::apa6_pdf
-  html_document: 
+- name: Philip Parker
+  affiliation: '1'
+  corresponding: yes
+  address: 33 Berry St, North Sydney, NSW, 2060, Australia
+  email: philip.parker@acu.edu.au
+  role:
+  - Conceptualization
+  - Formal Analysis
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Taren Sanders
+  affiliation: '1'
+  # corresponding: no
+  # address: 33 Berry St, North Sydney, NSW, 2060, Australia
+  # email: taren.sanders@acu.edu.au
+  role:
+  - Conceptualization
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Michael Noetel
+  affiliation: '1,3'
+  # corresponding: no
+  # address: 33 Berry St, North Sydney, NSW, 2060, Australia
+  # email: taren.sanders@acu.edu.au
+  role:
+  - Conceptualization
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+shorttitle: School SES and Social Skills
+output:
+  pdf: papaja::apa6_pdf
+  html_document:
     fig_caption: yes
     toc: yes
-  html_notebook: 
+  pdf_document:
+    toc: yes
+  word: papaja::apa6_doc
+  html_notebook:
     fig_caption: yes
     toc: yes
     highlight: haddock
     theme: spacelab
-  word:
-    papaja::apa6_doc
+authornote: |
+abstract: |2
+  As researchers and policymakers try to understand the consequences of SES for educational and occupational attainment, they increasingly consider social skills to be critical. Yet little research has considered how the school socio-economic context may differentially promote or hinder social skill development. In a representative longitudinal sample of 5361 Australian children, we tested the association between school average socioeconomic status and social skills as reported by parents and teachers. All models controlled for prior social skills at age 4, and a wide range of covariates. We found that school context was associated with social skill assimilation: controlling for individual socioeconomic status, children in more advantaged schools had more prosocial behavior and fewer peer and conduct problems. We found a consistent interaction between individual and school average socioeconomic status that suggested assimilation effects were only present for children from low socioeconomic backgrounds. We found that children from low socioeconomic backgrounds enter school with lower average social skills. They are more likely to be enrolled in more disadvantaged schools. Finally, the social skills of children from low socioeconomic backgrounds worsen in low SES contexts. Taking the evidence together, social stratified schools may harm children from low SES backgrounds while not benefiting children from high SES backgrounds.
+keywords: social skills; assimilation effects; socioeconomic status; school context
+wordcount: X
+bibliography: r-references.bib
+floatsintext: no
+figurelist: no
+tablelist: no
+footnotelist: no
+linenumbers: yes
+mask: no
+draft: no
+documentclass: apa6
+classoption: man
+affiliation:
+- id: '1'
+  institution: Institute for Positive Psychology and Education, Australian Catholic
+    University
+- id: '2'
+  institution: UCL Institute of Education, UCL
+- id: '3'
+  institution: School of Health and Behavioural Sciences, Australian Catholic University
 ---
 
 ```{r setup, include = FALSE}
@@ -117,7 +126,7 @@ boys = as.vector(table(data$gender)[1]/nrow(data)) %>% scales::percent(accuracy 
 knitr::include_graphics(here::here('fig','flow.pdf'))
 ```
 
-We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (`r school_one`) or were one of two children surveyed (`r school_two`) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in much school context research. We excluded participants who were not in school (e.g., were home schooled, or were otherwise missing an identifier of which school they attended), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was `r nrow(data)` (`r boys` boys) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. A participant flow diagram is present end in Figure \@ref(fig:consort) including the number of participants excluded because there were a) not in Year 3 during the age 8 LSAC data collection sweep; b) were not eligible to participate NAPLAN (e.g., due to intellectual disability; or c) were not enrolled in school (e.g., were home schooled).
+We use data for children, their parents, and their teachers from the B-Cohort and K-Cohort of the Longitudinal Study of Australian Children (LSAC). LSAC is a government-run study of a representative sample of Australian children between who were zero-one (B-cohort) and four-five (K-Cohort) years of age in 2004. Both cohorts of children have been followed every two years since [@aifs2015]. LSAC includes linked administration records for student performance in a standardized national numeracy test. We also use government collected data on school average socioeconomic status. Many children in the sample were the only child surveyed (`r school_one`) or were one of two children surveyed (`r school_two`) in their school. By using administrative records, we gain school average socioeconomic status based on the child's $\text{\underline{whole}}$ school grade from a high-quality source, thus avoiding sampling bias present in much school context research. We excluded participants who were not in school (e.g., were home schooled, or were otherwise missing an identifier of which school they attended), were not in Year 3 at the time of testing, or were not eligible to complete national standardized testing (e.g., children with an intellectual disability). Together our total sample was `r nrow(data)` (`r boys` boys) children in Year 3 at school (\~age 8). In the vast majority of cases (98%), parent data came from mothers. A participant flow diagram is presented in Figure \@ref(fig:consort) including the number of participants excluded because there were a) not in Year 3 during the age 8 LSAC data collection sweep; b) were not eligible to participate NAPLAN (e.g., due to intellectual disability; or c) were not enrolled in school (e.g., were home schooled).
 
 ## Measures
 
@@ -149,19 +158,27 @@ Numeracy for the child and for their complete school grade was taken from admini
 
 There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by using applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less (see code book in supplementary materials <!--# Convert to OSF link when ready -->). To account for this, we constructed five imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These imputations were used in all analyses. All analyses were done using Bayes via the BRMS package in R [@bürkner2017]. The Bayes models were run once for each imputation and then the resulting posterior samples were pooled before point and uncertainty estimates were extracted. Interactions and their associated uncertainties were plotted by taking marginal effect estimates from a random 500 posterior draws for disadvantages (two standard deviations below the mean of SES), average, and advantaged (two standard deviations above the mean of SES) students [@gelman2020regression].
 
-All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobit regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails ([see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools. We clearly demarcate the units of analysis in tables and figures. I general the SDQ measures are retained on the original scale and all other continuous variables are z-scored. We retain the SDQ scores on the original scale because of the presence of norms [\@youth2016scoring]. Peer and conduct problems scores of 3 or greater and prosocial scores of 7 or lower place children beyond the 'close to average' group and may thus be a potential concern [@youth2016scoring]. <!--# We could use post-stratification weights to provide clinically relevant proportions of the population for different levels of SES and school SES -->
+All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobit regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the right and left in all models. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools. We clearly demarcate the units of analysis in tables and figures. I general the SDQ measures are retained on the original scale and all other continuous variables are z-scored. We retain the SDQ scores on the original scale because of the presence of norms [@youth2016scoring]. Peer and conduct problems scores of 3 or greater and prosocial scores of 7 or lower place children beyond the 'close to average' group and may thus be a potential concern [@youth2016scoring]. <!--# We could use post-stratification weights to provide clinically relevant proportions of the population for different levels of SES and school SES -->
 
 The models are fit using the following formula:
 
 $$
-y^{*}_{i} \sim N(\alpha_{j[i]} + X_i\beta + \sigma^{2}_{y}), for~i = 1,...,n\\
+\begin{split}
+y^{*}_{i} \sim N(\alpha_{j[i]} + X_i\beta + \sigma^{2}_{y}), for~i = 1,...,n \\
 \alpha_{j} \sim N(U_j \gamma, \sigma^{2}_{\alpha}), for~j = 1,...k
+\end{split}
 $$
 
 Here $X_i$ is a matrix of individual level predictors including individual SES, prior social skills, gender, cohort, geographic location, and an NAPLAN achievement index. $U_j$ is a matrix of school level predictors including school section and the critical variable school SES. Note that we predict $y^{*}_{i}$ which is the latent continuous variable underlying the observed variables which is defined as:
 
 $$
-y_i =  \begin{cases}      y*_{i} & \text{if $y*_{i} < 0$ or $y*_{i} > 10 $}\\      0 & \text{if $y*_{i} < 0$}\\      10 & \text{if $y*_{i} > 10$}    \end{cases}
+\begin{split}
+y_i =  \begin{cases}      
+            y*_{i} & \text{if $y*_{i} < 0$ or $y*_{i} > 10 $}\\      
+            0 & \text{if $y*_{i} < 0$}\\      
+            10 & \text{if $y*_{i} > 10$}    
+        \end{cases}
+\end{split}
 $$
 
 # Results
@@ -240,7 +257,7 @@ For children with SES status below the mean, school socioeconomic context had st
 
 This counterfactual may suggest that school choice, in which low SES children receive vouchers or similar, may be beneficial [see @friedman1962]. Strategies like school vouchers to attend magnet schools could be a powerful policy lever to overcome socioeconomic gaps in social skills. This approach tackles the problem of assimilative contextual effects via market-based systems. Yet this policy requires there to be few barriers, whether psychological or otherwise, to parents using vouchers to select the best school that matches the needs of their child. But this does not seem to be the case [@gradstein2005]. Indeed, empirical evidence suggests that school choice tends to exacerbate inequality [e.g., @saporito2003].
 
-Parker et al. [-@parker2016; -@parker2018 ; -@parker_information_2018; -@parker2019] have suggested that empirical evidence shows greater school choice at the country level is related to poorer average ability levels, lower aspirations, and paradoxical effects on psychological factors like motivation and self-concept that appears to have negative consequences for all children. They argue that empirical evidence suggests policy should encourage school selection policies that maximize within school heterogeneity. This would require considerable state intervention to achieve and may thus impose unreasonable restrictions on parents' rights to choose. However, it is worth noting that our counterfactual analysis (Table 4) shows that high SES children appear to not suffer to any notable degree, in relation to social skills, by being enrolled in a disadvantaged school.
+Parker et al. [-@parker2016; -@parker2018; -@parker_information_2018; -@parker2019] have suggested that empirical evidence shows greater school choice at the country level is related to poorer average ability levels, lower aspirations, and paradoxical effects on psychological factors like motivation and self-concept that appears to have negative consequences for all children. They argue that empirical evidence suggests policy should encourage school selection policies that maximize within school heterogeneity. This would require considerable state intervention to achieve and may thus impose unreasonable restrictions on parents' rights to choose. However, it is worth noting that our counterfactual analysis (Table 4) shows that high SES children appear to not suffer to any notable degree, in relation to social skills, by being enrolled in a disadvantaged school.
 
 There are strong arguments and good empirical support on both sides of this debate, suggesting that we are far from a settled position on the matter. At least for the current context in Australia where social stratification is moderately high and where the school system seems to ensure school choice is more clearly an option for the rich than the poor [@parker2019], our results are troubling. In particular, they suggest low SES children face a triple bind. First, they enter school with lower social skills. Second, they enter schools where assimilation effects are likely to further dampen social skill development. Third, they appear particularly vulnerable to their school context in this respect.
 
