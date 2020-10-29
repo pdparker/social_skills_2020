@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.17)  23 OCT 2020 18:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.17)  29 OCT 2020 15:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,30 +702,30 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
 (./manuscript.aux)
 \openout1 = `manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 164.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 164.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 161.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 161.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 164.
-LaTeX Font Info:    ... okay on input line 164.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 164.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 161.
+LaTeX Font Info:    ... okay on input line 161.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 161.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -800,7 +800,7 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2018/08/26 v1.4-95 longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 164.
+LaTeX Info: Redefining \microtypecontext on input line 161.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -815,7 +815,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 \AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring OFF on input line 164.
+Package hyperref Info: Link coloring OFF on input line 161.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -823,47 +823,47 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count157
 )
-LaTeX Info: Redefining \ref on input line 164.
-LaTeX Info: Redefining \pageref on input line 164.
-LaTeX Info: Redefining \nameref on input line 164.
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 166.
+LaTeX Info: Redefining \ref on input line 161.
+LaTeX Info: Redefining \pageref on input line 161.
+LaTeX Info: Redefining \nameref on input line 161.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 163.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 166.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 163.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 166.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 163.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 166
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 163
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 166
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 163
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 166.
+(Font)              <12> on input line 163.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 166.
+(Font)              <8> on input line 163.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 166.
-LaTeX Font Info:    Try loading font information for U+msa on input line 166.
+(Font)              <6> on input line 163.
+LaTeX Font Info:    Try loading font information for U+msa on input line 163.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 166.
+LaTeX Font Info:    Try loading font information for U+msb on input line 163.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -874,11 +874,11 @@ File: mt-eur.cfg 2006/07/31 v1.1 microtype config. file: AMS Euler Roman (RS)
 
 ] [2]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 167.
+(Font)              <10> on input line 164.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 167.
+(Font)              <7> on input line 164.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 167.
+(Font)              <5> on input line 164.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -891,25 +891,26 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 (manuscript.fff) [6] [7]
 Underfull \vbox (badness 1360) has occurred while \output is active []
 
-[8] [9]
+[8] [9] [10]
 \openout3 = `manuscript.ttt'.
 
 (manuscript.ttt)
-Underfull \vbox (badness 4096) has occurred while \output is active []
 
-[10]
+LaTeX Warning: Reference `tab:table-1' on page 11 undefined on input line 280.
 
-LaTeX Warning: Reference `tab:table-1' on page 11 undefined on input line 262.
+[11]
 
+LaTeX Warning: Reference `tab:table-2' on page 12 undefined on input line 309.
 
-LaTeX Warning: Reference `tab:table-2' on page 11 undefined on input line 291.
+[12] [13] [14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
+[15] [16] [17] [18] [19] [20] [21]
 
-Package caption Warning: Unused \captionsetup[table] on input line 241.
+Package caption Warning: Unused \captionsetup[table] on input line 259.
 See the caption package documentation for explanation.
 
-AED endfloat: Processing end Figures and Tables [21] (./manuscript.ttt [22
+AED endfloat: Processing end Figures and Tables [22] (./manuscript.ttt [23
 
 
 ]
@@ -917,11 +918,11 @@ Overfull \hbox (45.19981pt too wide) in alignment at lines 19--40
  [] [] [] [] [] [] 
  []
 
-) [23
+) [24
 
 ] (./manuscript.fff
 </Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skills_20
-20/fig/flow.pdf, id=244, 387.4475pt x 777.90625pt>
+20/fig/flow.pdf, id=253, 387.4475pt x 777.90625pt>
 File: /Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skil
 ls_2020/fig/flow.pdf Graphic file (type pdf)
 <use /Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skill
@@ -932,63 +933,66 @@ WORKING/social_skills_2020/fig/flow.pdf  used on input line 5.
 
 LaTeX Warning: Float too large for page by 34.01305pt on input line 7.
 
-<manuscript_files/figure-latex/peer-1.pdf, id=245, 435.6275pt x 281.05pt>
+<manuscript_files/figure-latex/peer-1.pdf, id=254, 435.6275pt x 281.05pt>
 File: manuscript_files/figure-latex/peer-1.pdf Graphic file (type pdf)
 <use manuscript_files/figure-latex/peer-1.pdf>
 Package pdftex.def Info: manuscript_files/figure-latex/peer-1.pdf  used on inpu
 t line 12.
 (pdftex.def)             Requested size: 435.62643pt x 281.0493pt.
-<manuscript_files/figure-latex/conduct-1.pdf, id=246, 435.6275pt x 281.05pt>
+<manuscript_files/figure-latex/conduct-1.pdf, id=255, 435.6275pt x 281.05pt>
 File: manuscript_files/figure-latex/conduct-1.pdf Graphic file (type pdf)
 <use manuscript_files/figure-latex/conduct-1.pdf>
 Package pdftex.def Info: manuscript_files/figure-latex/conduct-1.pdf  used on i
 nput line 19.
 (pdftex.def)             Requested size: 435.62643pt x 281.0493pt.
-<manuscript_files/figure-latex/social-1.pdf, id=247, 435.6275pt x 281.05pt>
+<manuscript_files/figure-latex/social-1.pdf, id=256, 435.6275pt x 281.05pt>
 File: manuscript_files/figure-latex/social-1.pdf Graphic file (type pdf)
 <use manuscript_files/figure-latex/social-1.pdf>
 Package pdftex.def Info: manuscript_files/figure-latex/social-1.pdf  used on in
 put line 26.
 (pdftex.def)             Requested size: 435.62643pt x 281.0493pt.
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 475.
-[24 </Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skill
-s_2020/fig/flow.pdf>] [25 <./manuscript_files/figure-latex/peer-1.pdf> <./manus
-cript_files/figure-latex/conduct-1.pdf>] [26 <./manuscript_files/figure-latex/s
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 493.
+[25 </Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skill
+s_2020/fig/flow.pdf>] [26 <./manuscript_files/figure-latex/peer-1.pdf> <./manus
+cript_files/figure-latex/conduct-1.pdf>] [27 <./manuscript_files/figure-latex/s
 ocial-1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 475.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 493.
 (./manuscript.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 475.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 475.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 493.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 493.
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 16791 strings out of 492616
- 248986 string characters out of 6129481
- 386346 words of memory out of 5000000
+ 16788 strings out of 492616
+ 248945 string characters out of 6129481
+ 386717 words of memory out of 5000000
  20189 multiletter control sequences out of 15000+600000
- 90273 words of font info for 125 fonts, out of 8000000 for 9000
+ 90015 words of font info for 123 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 52i,11n,55p,2249b,541s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/
-texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2019/t
-exmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2019/texmf-dist/
-fonts/enc/dvips/lm/lm-mathit.enc}</usr/local/texlive/2019/texmf-dist/fonts/type
-1/public/lm/lmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
-m/lmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr10.pf
-b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2019/texmf-di
-st/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2019/texmf-dist/fonts/t
-ype1/public/lm/lmri12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
-c/lm/lmss8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsy10
-.pfb>
-Output written on manuscript.pdf (26 pages, 4171441 bytes).
+ 52i,26n,55p,2249b,541s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/
+texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/20
+19/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2019/texmf-dist/
+fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2019/texmf-dist/fonts/enc/
+dvips/lm/lm-mathsy.enc}</usr/local/texlive/2019/texmf-dist/fonts/type1/public/l
+m/lmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmex10.p
+fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2019/texm
+f-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2019/texmf-dist/font
+s/type1/public/lm/lmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publ
+ic/lm/lmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10
+.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/public/lm/lmss8.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on manuscript.pdf (27 pages, 4189000 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 385 compressed objects within 4 object streams
- 117 named destinations out of 1000 (max. 500000)
+ 461 PDF objects out of 1000 (max. 8388607)
+ 400 compressed objects within 4 object streams
+ 118 named destinations out of 1000 (max. 500000)
  14517 words of extra memory for PDF output out of 17280 (max. 10000000)
 
