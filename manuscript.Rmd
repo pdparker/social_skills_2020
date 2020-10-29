@@ -23,18 +23,30 @@ author:
   - Writing - Review & Editing
 - name: Jake Anders
   affiliation: '2'
-  # corresponding: no
-  # address: 33 Berry St, North Sydney, NSW, 2060, Australia
-  # email: taren.sanders@acu.edu.au
+  role:
+  - Conceptualization
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Nikki Shure
+  affiliation: '2'
+  role:
+  - Conceptualization
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: John Jerrim
+  affiliation: '2'
   role:
   - Conceptualization
   - Writing - Original Draft Preparation
   - Writing - Review & Editing
 - name: Michael Noetel
   affiliation: '1,3'
-  # corresponding: no
-  # address: 33 Berry St, North Sydney, NSW, 2060, Australia
-  # email: taren.sanders@acu.edu.au
+  role:
+  - Conceptualization
+  - Writing - Original Draft Preparation
+  - Writing - Review & Editing
+- name: Joseph Ciarrochi
+  affiliation: '1'
   role:
   - Conceptualization
   - Writing - Original Draft Preparation
