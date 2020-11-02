@@ -1,4 +1,5 @@
 library(targets)
+library(tarchetypes)
 
 source(here::here("R","functions.R"))
 options(tidyverse.quiet = TRUE)
@@ -115,5 +116,36 @@ tar_pipeline(
   tar_target(
     des_social,
     ses_beta(d = data_imp, outcome = 'social')
-  )
+  ),
+  tar_target(supp_linear,
+             full_model_output(
+               list(
+                 conduct_teach,
+                 social_teach,
+                 peer_teach,
+                 conduct_par,
+                 social_par,
+                 peer_par
+               ),
+               model_type = 'linear'
+             )),
+  tar_target(supp_interaction,
+             full_model_output(
+               list(
+                 conduct_teach,
+                 social_teach,
+                 peer_teach,
+                 conduct_par,
+                 social_par,
+                 peer_par
+               ),
+               model_type = 'interaction'
+             )
+  ),
+  tar_render(manuscript,
+             "manuscript.Rmd",
+             deployment = "master"),
+  tar_render(supplementary_material,
+             "supplementary_materials.Rmd",
+             deployment = "master")
 )

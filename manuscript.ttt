@@ -6,12 +6,12 @@
 \toprule
 Outcome & Report Source & Estimate & -95\% CI & +95\% CI \\
 \midrule
-conduct & teacher & $-0.152$ & $-0.261$ & $-0.046$ \\
-social & teacher & $0.147$ & $0.056$ & $0.241$ \\
-peer & teacher & $-0.115$ & $-0.204$ & $-0.024$ \\
-conduct & parent & $-0.107$ & $-0.169$ & $-0.045$ \\
-social & parent & $0.087$ & $0.018$ & $0.156$ \\
-peer & parent & $-0.135$ & $-0.205$ & $-0.063$ \\
+conduct & teacher & $-0.154$ & $-0.264$ & $-0.043$ \\
+social & teacher & $0.148$ & $0.054$ & $0.242$ \\
+peer & teacher & $-0.116$ & $-0.204$ & $-0.029$ \\
+conduct & parent & $-0.108$ & $-0.170$ & $-0.046$ \\
+social & parent & $0.087$ & $0.018$ & $0.155$ \\
+peer & parent & $-0.134$ & $-0.203$ & $-0.063$ \\
 \bottomrule
 \end{longtable}
 \efloatseparator
@@ -24,17 +24,17 @@ peer & parent & $-0.135$ & $-0.205$ & $-0.063$ \\
 \toprule
 Outcome & Report Source & term & Estimate & -95\% CI & +95\% CI \\
 \midrule
-conduct & teacher & School Average SES & $-0.160$ & $-0.270$ & $-0.053$ \\
-conduct & teacher & School Average SES by Student SES & $0.151$ & $0.064$ & $0.240$ \\
-social & teacher & School Average SES & $0.156$ & $0.059$ & $0.252$ \\
-social & teacher & School Average SES by Student SES & $-0.094$ & $-0.172$ & $-0.017$ \\
-peer & teacher & School Average SES & $-0.126$ & $-0.216$ & $-0.036$ \\
-peer & teacher & School Average SES by Student SES & $0.117$ & $0.044$ & $0.191$ \\
-conduct & parent & School Average SES & $-0.112$ & $-0.175$ & $-0.048$ \\
-conduct & parent & School Average SES by Student SES & $0.058$ & $0.006$ & $0.111$ \\
-social & parent & School Average SES & $0.090$ & $0.020$ & $0.160$ \\
-social & parent & School Average SES by Student SES & $-0.031$ & $-0.087$ & $0.027$ \\
-peer & parent & School Average SES & $-0.144$ & $-0.217$ & $-0.074$ \\
-peer & parent & School Average SES by Student SES & $0.117$ & $0.058$ & $0.176$ \\
+conduct & teacher & School Average SES & $-0.161$ & $-0.268$ & $-0.054$ \\
+conduct & teacher & School Average SES by Student SES & $0.150$ & $0.063$ & $0.240$ \\
+social & teacher & School Average SES & $0.157$ & $0.063$ & $0.250$ \\
+social & teacher & School Average SES by Student SES & $-0.095$ & $-0.172$ & $-0.020$ \\
+peer & teacher & School Average SES & $-0.126$ & $-0.218$ & $-0.035$ \\
+peer & teacher & School Average SES by Student SES & $0.116$ & $0.046$ & $0.189$ \\
+conduct & parent & School Average SES & $-0.112$ & $-0.176$ & $-0.047$ \\
+conduct & parent & School Average SES by Student SES & $0.058$ & $0.006$ & $0.110$ \\
+social & parent & School Average SES & $0.090$ & $0.023$ & $0.157$ \\
+social & parent & School Average SES by Student SES & $-0.031$ & $-0.087$ & $0.029$ \\
+peer & parent & School Average SES & $-0.143$ & $-0.213$ & $-0.074$ \\
+peer & parent & School Average SES by Student SES & $0.117$ & $0.057$ & $0.179$ \\
 \bottomrule
 \end{longtable}

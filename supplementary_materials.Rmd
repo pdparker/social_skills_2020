@@ -1,0 +1,39 @@
+---
+title: "Supplementary Materials: School Socioeconomic Status Context and Social Skills in Children"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+library(targets)
+library(scales)
+library(tidyverse)
+library(DT)
+
+
+```
+
+# Full Linear Model
+
+```{r}
+tar_load(supp_linear)
+supp_linear %>% 
+  datatable(filter = 'top', caption = "Table S1. Full Linear Model Outputs")
+```
+
+# Full Interaction Model
+
+```{r}
+tar_load(supp_interaction)
+supp_interaction %>%
+  datatable(filter = 'top', caption = "Table S2. Full Interaction Model Outputs")
+```
+
+# Codebook
+
+```{r, child="data/social_skills_codebook.Rmd"}
+
+```
+

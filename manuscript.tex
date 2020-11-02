@@ -192,7 +192,7 @@ We expect the assimilation effects to occur in the context of low SES children e
 
 \begin{figure}
 \centering
-\includegraphics{/Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skills_2020/fig/flow.pdf}
+\includegraphics{/Users/tasanders/GitHub/social_skills_2020/fig/flow.pdf}
 \caption{\label{fig:consort}Participant flow diagramme}
 \end{figure}
 
@@ -206,7 +206,7 @@ We use data for children, their parents, and their teachers from the B-Cohort an
 
 Social skills were estimated using the peer problems, conduct problems, and prosocial behavior component scores from the SDQ (Goodman, 1997). We explored social skills at age 4-5 (for prior social skills; parent report only) and age 8-9 (as primary outcomes) as reported by the child's \emph{parent} and the child's \emph{teacher}. The SDQ asks respondents to rate a child's behavior in the last six months on a 3-point scale (not true, somewhat true, and certainly true). Questions ask about the child's peer problems (``Rather solitary, tends to play alone''), conduct problems (``Often fights with other children or bullies them''), and prosociality (``Is kind to younger children''). Greatest lower bound estimates of reliability were all greater than .95 and parallel analysis suggested that a single component was sufficient for each of the parent and teacher and age 4 and age 8 social skills factors. On the basis of this evidence, we used the total scores for these scales as developed by the LSAC administrators. Scores ranged from 0 to 10. These scores were heavily left censored for peer and conduct problems with a preponderance of students being scored as a zero by their parent or teacher. Prosocial behaviors were heavily right censored. Censoring can be viewed as a special type of missing data where scores on \(y*\) (the hypothesised true latent distribution of the variable) below or above the bounds are curtailed to fit within the bounds resulting in the observed scores \(y\) (Gelman, Hill, \& Vehtari, 2020). Models accounting for this censoring were used in all cases with results provided on the scale of the latent variable \(y*\) believed to underlie the censored variable (hence negative predicted scores or scores over 10 were possible).
 
-Parents and teachers had moderate agreement for children at age 8 with correlations ranging from \emph{r} = 0.41 95\% CI{[}0.38, 0.43{]} for peer and \emph{r} = 0.4 95\% CI{[}0.37, 0.42{]} for conduct problems to \emph{r} = 0.29 95\% CI{[}0.26, 0.31{]} for prosocial behavior.
+Parents and teachers had moderate agreement for children at age 8 with correlations ranging from \emph{r} = 0.41 95\% CI{[}0.38, 0.43{]} for peer and \emph{r} = 0.39 95\% CI{[}0.37, 0.42{]} for conduct problems to \emph{r} = 0.29 95\% CI{[}0.26, 0.31{]} for prosocial behavior.
 
 \hypertarget{socioeconomic-status}{%
 \subsubsection{Socioeconomic Status}\label{socioeconomic-status}}
@@ -265,12 +265,12 @@ In order to provide a context for the main analyses we first aimed to show: a) t
 \toprule
 Outcome & Report Source & Estimate & -95\% CI & +95\% CI \\ 
 \midrule
-conduct & teacher & $-0.152$ & $-0.261$ & $-0.046$ \\ 
-social & teacher & $0.147$ & $0.056$ & $0.241$ \\ 
-peer & teacher & $-0.115$ & $-0.204$ & $-0.024$ \\ 
-conduct & parent & $-0.107$ & $-0.169$ & $-0.045$ \\ 
-social & parent & $0.087$ & $0.018$ & $0.156$ \\ 
-peer & parent & $-0.135$ & $-0.205$ & $-0.063$ \\ 
+conduct & teacher & $-0.154$ & $-0.264$ & $-0.043$ \\ 
+social & teacher & $0.148$ & $0.054$ & $0.242$ \\ 
+peer & teacher & $-0.116$ & $-0.204$ & $-0.029$ \\ 
+conduct & parent & $-0.108$ & $-0.170$ & $-0.046$ \\ 
+social & parent & $0.087$ & $0.018$ & $0.155$ \\ 
+peer & parent & $-0.134$ & $-0.203$ & $-0.063$ \\ 
 \bottomrule
 \end{longtable}
 
@@ -288,18 +288,18 @@ We next predicted social skills with school average SES controlling for individu
 \toprule
 Outcome & Report Source & term & Estimate & -95\% CI & +95\% CI \\ 
 \midrule
-conduct & teacher & School Average SES & $-0.160$ & $-0.270$ & $-0.053$ \\ 
-conduct & teacher & School Average SES by Student SES & $0.151$ & $0.064$ & $0.240$ \\ 
-social & teacher & School Average SES & $0.156$ & $0.059$ & $0.252$ \\ 
-social & teacher & School Average SES by Student SES & $-0.094$ & $-0.172$ & $-0.017$ \\ 
-peer & teacher & School Average SES & $-0.126$ & $-0.216$ & $-0.036$ \\ 
-peer & teacher & School Average SES by Student SES & $0.117$ & $0.044$ & $0.191$ \\ 
-conduct & parent & School Average SES & $-0.112$ & $-0.175$ & $-0.048$ \\ 
-conduct & parent & School Average SES by Student SES & $0.058$ & $0.006$ & $0.111$ \\ 
-social & parent & School Average SES & $0.090$ & $0.020$ & $0.160$ \\ 
-social & parent & School Average SES by Student SES & $-0.031$ & $-0.087$ & $0.027$ \\ 
-peer & parent & School Average SES & $-0.144$ & $-0.217$ & $-0.074$ \\ 
-peer & parent & School Average SES by Student SES & $0.117$ & $0.058$ & $0.176$ \\ 
+conduct & teacher & School Average SES & $-0.161$ & $-0.268$ & $-0.054$ \\ 
+conduct & teacher & School Average SES by Student SES & $0.150$ & $0.063$ & $0.240$ \\ 
+social & teacher & School Average SES & $0.157$ & $0.063$ & $0.250$ \\ 
+social & teacher & School Average SES by Student SES & $-0.095$ & $-0.172$ & $-0.020$ \\ 
+peer & teacher & School Average SES & $-0.126$ & $-0.218$ & $-0.035$ \\ 
+peer & teacher & School Average SES by Student SES & $0.116$ & $0.046$ & $0.189$ \\ 
+conduct & parent & School Average SES & $-0.112$ & $-0.176$ & $-0.047$ \\ 
+conduct & parent & School Average SES by Student SES & $0.058$ & $0.006$ & $0.110$ \\ 
+social & parent & School Average SES & $0.090$ & $0.023$ & $0.157$ \\ 
+social & parent & School Average SES by Student SES & $-0.031$ & $-0.087$ & $0.029$ \\ 
+peer & parent & School Average SES & $-0.143$ & $-0.213$ & $-0.074$ \\ 
+peer & parent & School Average SES by Student SES & $0.117$ & $0.057$ & $0.179$ \\ 
 \bottomrule
 \end{longtable}
 

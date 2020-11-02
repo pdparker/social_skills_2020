@@ -146,12 +146,22 @@ data <- function(data_list = list()){
   return(child_data)
 }
 
-make_codebook <- function(data){
-  dataMaid::makeCodebook(data,
-                         file = here::here("data",
-                                     glue::glue("{Sys.Date()}_codebook.Rmd")),
-                         replace=TRUE)
-  return(here::here("data",glue::glue("{Sys.Date()}_codebook.pdf")))
+make_codebook <- function(data) {
+  dataMaid::makeCodebook(
+    data,
+    file = here::here("data",
+                      glue::glue("social_skills_codebook.Rmd")),
+    replace = TRUE,
+    render = FALSE,
+    standAlone = FALSE
+  )
+  # Remove last lines of codebook to maintain blinding
+  codebook <-
+    readLines(here::here("data", glue::glue("social_skills_codebook.Rmd")))
+  codebook.len <- length(codebook)
+  writeLines(codebook[-((codebook.len - 22):codebook.len)], here::here("data", glue::glue("social_skills_codebook.Rmd")))
+  
+  return(here::here("data", glue::glue("social_skills_codebook.Rmd")))
 }
 
 consort_flow <- function(data_list = list(age_4_data, age_8_data, child_achievement_data, school_achievement_data)) {
@@ -439,39 +449,48 @@ plots <- function(model=conduct_teach){
 }
 
 
-full_model_output <- function(model = conduct_teach) {
-  
-  nm <- deparse(substitute(model)) %>%
-    str_split(., "_",simplify = TRUE) %>% 
-    str_to_sentence()
-  
-  source <- ifelse(nm[2] == "teach", "Teacher", "Parent")
-  outcome <- case_when(
-    nm[1] == 'Conduct' ~ "Conduct Problems",
-    nm[1] == 'Social' ~ "Prosociality",
-    nm[1] == 'Peer' ~ "Peer Problems",
-  )
-  
-  out = model %>%
-    map_dfr(broom.mixed::tidy, .id = "model") %>%
-    mutate(term = case_when(
-      term == '(Intercept)' ~ "Intercept (Units: Censored 0-10)",
-      term == 'ses_sch' ~ "School Average SES (Units: SD)",
-      term == 'ses' ~ "SES (Units: SD)",
-      term == 'prior' ~ glue::glue("Prior {outcome} (Units: 0-10)") %>% as.character(),
-      term == 'cohortK' ~ "Cohort K",
-      term == 'gendergirl' ~ "Girl",
-      term == 'geourban' ~ "Urban",
-      term == 'ach' ~ "Academic Achievement (Units: SD)",
-      term == 'sectorNonMGovernment' ~ "Non-government School",
-      term == 'sd__(Intercept)' ~ "Random Intercept (Units: SD)",
-      term == 'sch_ses:ses' ~ "School Average SES by Student SES",
-      term == 'ses_sch:polyses21' ~ "School Average SES by Student SES Linear",
-      term == 'ses_sch:polyses21' ~ "School Average SES by Student SES Quadratic",
-    )) %>%
-    select(Predictor = term, Estimate = estimate,
-           `-95% CI` = conf.low,`+95% CI` = conf.high) 
-  
-  return(out)
-}
+full_model_output <-
+  function(model_list = list(conduct_teach,
+                             social_teach,
+                             peer_teach,
+                             conduct_par,
+                             social_par,
+                             peer_par),
+           model_type = 'linear') {
+    out <- model_list %>%
+      map(`[[`, model_type) %>%
+      map_dfr(broom.mixed::tidy, .id = "model") %>%
+      mutate(
+        Outcome = case_when(
+          model == 1 | model == 4 ~ "Conduct Problems",
+          model == 2 | model == 5 ~ "Prosociality",
+          model == 3 | model == 6 ~ "Peer Problems"
+        ),
+        "Report Source" = ifelse(model < 4, "Teacher", "Parent"),
+        Predictor = case_when(
+          term == '(Intercept)' ~ "Intercept (Units: Censored 0-10)",
+          term == 'ses_sch' ~ "School Average SES (Units: SD)",
+          term == 'ses' ~ "SES (Units: SD)",
+          term == "prior" ~ paste("Prior", Outcome, "(Units: 0-10)", sep = " "),
+          term == 'cohortK' ~ "Cohort K",
+          term == 'gendergirl' ~ "Girl",
+          term == 'geourban' ~ "Urban",
+          term == 'ach' ~ "Academic Achievement (Units: SD)",
+          term == 'sectorNonMGovernment' ~ "Non-government School",
+          term == 'sd__(Intercept)' ~ "Random Intercept (Units: SD)",
+          term == 'sch_ses:ses' ~ "School Average SES by Student SES",
+        )
+      ) %>%
+      select(
+        Outcome,
+        "Report Source",
+        Predictor,
+        Estimate = estimate,
+        "-95% Conf. Interval" = conf.low,
+        "+95% Conf. Interval" = conf.high
+      ) %>%
+      drop_na()
+    
+    return(out)
+  }
 

@@ -2,7 +2,7 @@
 \ifnextchar[{\eatarg}{}
 
 \centering
-\includegraphics{/Users/philipparker/Dropbox/Projects_Research/CURRENT_WORKING/social_skills_2020/fig/flow.pdf}
+\includegraphics{/Users/tasanders/GitHub/social_skills_2020/fig/flow.pdf}
 \caption{\label{fig:consort}Participant flow diagramme}
 \end{figure*}
 \begin{figure*}[hbt]
