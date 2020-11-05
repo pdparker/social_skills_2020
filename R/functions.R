@@ -415,7 +415,7 @@ plots <- function(model=conduct_teach){
     str_split(., "_",simplify = TRUE) %>% 
     str_to_sentence()
   
-  source <- ifelse(nm[2] == "teach", "Teacher", "Parent")
+  source <- ifelse(nm[2] == "Teach", "Teacher", "Parent")
   outcome <- case_when(
     nm[1] == 'Conduct' ~ "Conduct Problems",
     nm[1] == 'Social' ~ "Prosociality",
@@ -425,12 +425,10 @@ plots <- function(model=conduct_teach){
   conditions <- data.frame(ses = c(-2, 0, 2))
   
   p = plot(brms::conditional_effects(model$interaction,'ses_sch:ses',
-                                 spaghetti = T, nsamples = 500, 
+                                 #spaghetti = T, nsamples = 500, 
                                  int_conditions = conditions))[[1]] +
-    labs(#title = glue::glue('{source} Reported {outcome}'),
-         #subtitle = "<span style='color:red'>High (+2 SD)</span>, <span style='color:green'>Average</span>, and <span style='color:blue'>Low (-2 SD)</span> SES Children",
-         color = "SES (Units: SD)",
-         y = "Outcome (Units: censorded 0-10)",
+    labs(color = "SES (Units: SD)",
+         y = glue::glue('{source} Reported {outcome} (Units: censorded 0-10)'),
          x = "School Average SES (Units: SD)") +
     tidyMB::theme_mb() +
     theme(

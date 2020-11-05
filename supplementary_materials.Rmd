@@ -20,7 +20,8 @@ library(DT)
 ```{r}
 tar_load(supp_linear)
 supp_linear %>% 
-  datatable(filter = 'top', caption = "Table S1. Full Linear Model Outputs")
+  datatable(filter = 'top', caption = "Table S1. Full Linear Model Outputs") %>%
+    formatRound(columns=4:6, digits=3)
 ```
 
 # Full Interaction Model
@@ -28,7 +29,8 @@ supp_linear %>%
 ```{r}
 tar_load(supp_interaction)
 supp_interaction %>%
-  datatable(filter = 'top', caption = "Table S2. Full Interaction Model Outputs")
+  datatable(filter = 'top', caption = "Table S2. Full Interaction Model Outputs") %>%
+    formatRound(columns=4:6, digits=3)
 ```
 
 # Codebook

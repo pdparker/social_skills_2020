@@ -10,6 +10,8 @@ author:
   role:
   - Conceptualization
   - Formal Analysis
+  - Data curation
+  - Visualization
   - Writing - Original Draft Preparation
   - Writing - Review & Editing
 - name: Taren Sanders
@@ -19,6 +21,8 @@ author:
   # email: taren.sanders@acu.edu.au
   role:
   - Conceptualization
+  - Data curation
+  - Visualization
   - Writing - Original Draft Preparation
   - Writing - Review & Editing
 - name: Jake Anders
@@ -42,13 +46,12 @@ author:
 - name: Michael Noetel
   affiliation: '1,3'
   role:
-  - Conceptualization
+  - Visualization
   - Writing - Original Draft Preparation
   - Writing - Review & Editing
 - name: Joseph Ciarrochi
   affiliation: '1'
   role:
-  - Conceptualization
   - Writing - Original Draft Preparation
   - Writing - Review & Editing
 shorttitle: School SES and Social Skills
@@ -66,10 +69,11 @@ output:
     highlight: haddock
     theme: spacelab
 authornote: |
+  Code for this paper is avaliable from [OSF](https://osf.io/q26ej/?view_only=73f60cea7a9c4e6f8affc412b30df118). Data is avaliable from the [Australian Data Archive](https://dataverse.ada.edu.au/dataverse/ada?q=LSAC).
 abstract: |2
   As researchers and policymakers try to understand the consequences of SES for educational and occupational attainment, they increasingly consider social skills to be critical. Yet little research has considered how the school socio-economic context may differentially promote or hinder social skill development. In a representative longitudinal sample of  `r nrow(data)` Australian 8-year olds, we tested the association between school average socioeconomic status and social skills as reported by parents and teachers. All models controlled for prior social skills at age 4, and additional school and student covariates. We found that school context was associated with social skill assimilation: controlling for individual socioeconomic status, children in more advantaged schools had more prosocial behavior and fewer peer and conduct problems. We found a consistent interaction between individual and school average socioeconomic status that suggested assimilation effects were only present for children from low socioeconomic backgrounds. We found that children from low socioeconomic backgrounds enter school with lower average social skills. They are more likely to be enrolled in more disadvantaged schools. Finally, the social skills of children from low socioeconomic backgrounds worsen in low SES contexts. Taking the evidence together, social stratified schools may harm children from low SES backgrounds while not benefiting children from high SES backgrounds.
 keywords: social skills; assimilation effects; socioeconomic status; school context
-wordcount: X
+wordcount: 4627
 bibliography: r-references.bib
 floatsintext: no
 figurelist: no
@@ -177,9 +181,9 @@ Numeracy for the child and for their complete school grade was taken from admini
 
 ## Analysis
 
-There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less (see code book in supplementary materials <!--# @philip.parker@acu.edu.au Convert to OSF link when ready -->). To account for this, we constructed five imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These imputations were used in all analyses. All analyses were done using Bayes via the BRMS package in R [@bürkner2017]. The Bayes models were run once for each imputation and then the resulting posterior samples were pooled before estimates and their uncertainty were extracted. Interactions and their associated uncertainties were plotted by taking marginal effect estimates from a random 500 posterior draws for disadvantaged (two standard deviations below the mean of SES), average, and advantaged (two standard deviations above the mean of SES) students [@gelman2020regression].
+There was a relatively small amount of missing data for most variables. However, given the data were longitudinal and included both linked administrative records and data collected from both the child's teacher and parent, missing data was inevitable. Attrition was offset by applying combined sample and attrition weights constructed for the age 8 sample. Remaining missing data was small with the largest missing data proportion for teacher reported social skills at 14%. All other variables had 6% missing data or less (see code book in [supplementary materials](http://blindedforreview.com/2020_social_skills/supplementary_materials.html)). To account for this, we constructed five imputed datasets using a bootstrapped expectation maximization procedure from the Amelia II package [@honaker2011]. These imputations were used in all analyses. All analyses were done using Bayes via the BRMS package in R [@bürkner2017]. The Bayes models were run once for each imputation and then the resulting posterior samples were pooled before estimates and their uncertainty were extracted. Interactions and their associated uncertainties were plotted by taking marginal effect estimates from a random 500 posterior draws for disadvantaged (two standard deviations below the mean of SES), average, and advantaged (two standard deviations above the mean of SES) students [@gelman2020regression].
 
-All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobit regression. Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the left and the right in all models. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools. We clearly demarcate the units of analysis in tables and figures. In general the SDQ measures are retained on the original scale and all other continuous variables are z-scored. We retain the SDQ scores on the original scale because of the presence of norms [@youth2016scoring]. Peer and conduct problems scores of 3 or greater and prosocial scores of 7 or lower place children beyond the 'close to average' group and may thus be a potential concern [@youth2016scoring]. <!--# @everyone We could use post-stratification weights to provide 'clinically' relevant proportions of the population for different levels of SES and school SES -->
+All models in the paper that predicted social skills were estimated taking into account the censoring of the social skills means using a Bayes version of Tobit regression (we used default weakly informed priors derived from the data for all models). Tobit models can be used when seeking to model outcome variables that are censored on the left, right, or both tails [see @kleiber2008]. As scores on the social skills variables have both a floor of zero and a ceiling of 10, we included censoring on both the left and the right in all models. The multilevel nature of the data (children nested within schools) was addressed by the inclusion of a random intercept for schools. We clearly demarcate the units of analysis in tables and figures. In general the SDQ measures are retained on the original scale and all other continuous variables are z-scored. We retain the SDQ scores on the original scale because of the presence of norms [@youth2016scoring]. Peer and conduct problems scores of 3 or greater and prosocial scores of 7 or lower place children beyond the 'close to average' group and may thus be a potential concern [@youth2016scoring].
 
 The models are fit using the following formula:
 
@@ -202,61 +206,86 @@ y_i =  \begin{cases}
 \end{split}
 $$
 
+All scripts used to produce these results can be found on the [OSF project](https://osf.io/q26ej/?view_only=73f60cea7a9c4e6f8affc412b30df118) associated with this paper. Data can be applied for from the Australian Data Archive Dataverse [website](https://dataverse.ada.edu.au/dataverse/ada?q=LSAC).
+
 # Results
 
 ## Low SES Children Start School with Poorer Social Skills and Enroll in More Disadvantaged Schools
 
 In order to provide a context for the main analyses we first aimed to show: a) that children from advantaged backgrounds enter school with better social skills (as measured by their parents) and b) that children in Australia tend to be schooled in socially stratified schools. Student SES is slightly correlated with prosocial behaviour (`r glue::glue("{format(des_social$prior_ses$fixed[1], digits = 2)} 95% CI[{format(des_social$prior_ses$fixed[3], digits = 2)}, {format(des_social$prior_ses$fixed[4], digits = 2)}]")`) but more strongly and negatively correlated with conduct (`r glue::glue("{format(des_conduct$prior_ses$fixed[1], digits = 2)} 95% CI[{format(des_conduct$prior_ses$fixed[3], digits = 2)}, {format(des_conduct$prior_ses$fixed[4], digits = 2)}]")`) and peer (`r glue::glue("{format(des_peer$prior_ses$fixed[1], digits = 2)} 95% CI[{format(des_peer$prior_ses$fixed[3], digits = 2)}, {format(des_peer$prior_ses$fixed[4], digits = 2)}]")`) problems. Children from lower SES backgrounds also tended to enter schools with children from similar backgrounds (`r glue::glue("{format(des_social$sch_ses$fixed[1], digits = 2)} 95% CI[{format(des_social$sch_ses$fixed[3], digits = 2)}, {format(des_social$sch_ses$fixed[4], digits = 2)}]")`).
 
+(ref:table-linear) Effect of School Average SES on Social Skills.
+
 ```{r table-1, caption='Effect of School Average SES on Social Skills',results='asis'}
 tar_load(linear_table)
-library(gt)
-library(tidyMB)
 
 linear_table %>%
-  gt() %>%
-  fmt_number(columns = 3:5, decimals = 3) %>%
-  apa_style(title = 'Table 1', subtitle = 'Effect of School Average SES on Social Skills') %>%
-  as_latex()
+  set_names(str_to_sentence(names(.))) %>%
+  printnum() %>%
+  apa_table(
+  .,
+  , caption = "(ref:table-linear)"
+  , note = "Results are in unit changes on a 1-10 (Censored) scale for social skills for a standard deviation increase in school SES. Full results in supplementary materials. Conduct = conduct problems, peer = peer problems, social = prosocial. Teacher = teacher reported, parent = parent reported."
+)
+
+
+#library(gt)
+#library(tidyMB)
+
+#linear_table %>%
+#  gt() %>%
+#  fmt_number(columns = 3:5, decimals = 3) %>%
+#  apa_style(title = 'Table 1', subtitle = 'Effect of School Average SES on Social Skills') %>%
+#  as_latex()
 ```
 
 ## School Average SES Predicts Social Skills Controlling for Age 4 SES and Social Skills
 
-We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results for school average SES are presented under in Table \@ref(tab:table-1) (the full model results are in supplementary materials). Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (at or just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems. Results from either teacher or parent provided fairly consistent evidence of the influence of school SES context on social skills (or more specifically change in social skills from age 4 to age 8). Interestingly, the association of school average SES with social skills was similar in strength to the association of individual SES with social skills (see supplementary materials for full results). The effect sizes were equivalent to approximately a 10th of the median absolute deviation in social skills.
+We next predicted social skills with school average SES controlling for individual SES, a range of demographic covariates and academic performance measures, and social skills at age 4. Results for school average SES are presented under in Table \@ref(table-linear) (the full model results are in [supplementary materials](http://blindedforreview.com/2020_social_skills/supplementary_materials.html)). Because we control for prior social skills, the effects of school average SES in these models can be interpreted as predicting change or development in social skills from age 4 (at or just prior to school enrollment) to age 8 (Year 3). School average SES negatively predicted conduct problems and positively predicted prosocial behavior for both parent and teacher reported social skills. School average SES also negatively predicted peer problems. Results from either teacher or parent provided fairly consistent evidence of the influence of school SES context on social skills (or more specifically change in social skills from age 4 to age 8). Interestingly, the association of school average SES with social skills was similar in strength to the association of individual SES with social skills (see supplementary materials for full results). The effect sizes were equivalent to approximately a 10th of the median absolute deviation in social skills.
+
+(ref:table-quadratic) Effect of School Average SES by Student SES on Social Skills.
 
 ```{r table-2, caption='Effect of School Average SES by Student SES on Social Skills',results='asis'}
 tar_load(interaction_table)
-library(gt)
-library(tidyMB)
-
 
 interaction_table %>%
-  gt() %>%
-  fmt_number(columns = 4:6, decimals = 3) %>%
-  apa_style(title = 'Table 2',
-            subtitle = 'Effect of School Average SES by Student SES on Social Skills') %>%
-  as_latex()
+  set_names(str_to_sentence(names(.))) %>%
+  printnum() %>%
+  apa_table(
+  .,
+  , caption = "(ref:table-quadratic)"
+  , note = "Results are in unit changes on a 1-10 (Censored) scale for social skills for a standard deviation increase in school SES. Full results in supplementary materials. Conduct = conduct problems, peer = peer problems, social = prosocial. Teacher = teacher reported, parent = parent reported."
+)
+
+#library(gt)
+#library(tidyMB)
+#interaction_table %>%
+#  gt() %>%
+#  fmt_number(columns = 4:6, decimals = 3) %>%
+#  apa_style(title = 'Table 2',
+#            subtitle = 'Effect of School Average SES by Student SES on Social Skills') %>%
+#  as_latex()
 ```
 
 ## School Average SES Predicts Social Skills Mainly in Low SES Children
 
-The predictive association of school average SES on social skills was not consistent across the SES gradient (see Table \@ref(tab:table-2)). Significant school average SES by student SES interactions were significant for peer and conduct problems for both teacher and parent reports and for teacher reported prosocial behavior. Interactions are plotted in Figures \@ref(fig:conduct)-\@ref(fig:social). Full model results can be found in supplementary materials. The interaction plots suggest that school context effects were particularly potent for disadvantaged children but school context had minimal impact on social skills for children from advantaged backgrounds. The plots suggest that for the very poorest schools in our sample, the average disadvantaged student would have levels of peer problems greater than the threshold for 'close to average' scores and thus potentially of concern [@youth2016scoring]. This same child would be well within the 'close to average' band in a school with an average levels of SES.
+The predictive association of school average SES on social skills was not consistent across the SES gradient (see Table \@ref(table-quadratic)). Significant school average SES by student SES interactions were significant for peer and conduct problems for both teacher and parent reports and for teacher reported prosocial behavior. Interactions are plotted in Figures \@ref(fig:conduct)-\@ref(fig:social). Full model results can be found in supplementary materials. The interaction plots suggest that school context effects were particularly potent for disadvantaged children but school context had minimal impact on social skills for children from advantaged backgrounds. The plots suggest that for the very poorest schools in our sample, a disadvantaged student would have levels of peer problems greater than the threshold for 'close to average' scores and thus potentially of concern [@youth2016scoring]. This same child would be well within the 'close to average' band in a school with an average levels of SES.
 
-```{r peer, fig.cap = 'Interaction Plot for Peer Problems'}
+```{r peer, fig.cap = 'School average SES by Student SES on Peer Problems. Includes 95% CIs.', fig.height = 6}
 library(patchwork)
 tar_load(peer_par_plot)
 tar_load(peer_teach_plot)
 peer_par_plot + peer_teach_plot + plot_layout(guides = "collect")  & theme(legend.position = 'bottom')
 ```
 
-```{r conduct, fig.cap = 'Interaction Plot for Conduct Problems'}
+```{r conduct, fig.cap = 'School average SES by Student SES on Conduct Problems. Includes 95% CIs.', fig.height = 6}
 library(patchwork)
 tar_load(conduct_par_plot)
 tar_load(conduct_teach_plot)
 conduct_par_plot + conduct_teach_plot + plot_layout(guides = "collect")  & theme(legend.position = 'bottom')
 ```
 
-```{r social, fig.cap = 'Interaction Plot for Prosociality'}
+```{r social, fig.cap = 'School average SES by Student SES on  Prosociality. Includes 95% CIs..', fig.height = 6}
 library(patchwork)
 tar_load(social_par_plot)
 tar_load(social_teach_plot)
