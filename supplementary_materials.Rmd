@@ -11,8 +11,15 @@ library(targets)
 library(scales)
 library(tidyverse)
 library(DT)
+library(knitr)
+```
 
+# Participant Flow Diagram
 
+```{r}
+library(magick)
+pdf = magick::image_read(here::here("fig","flow.pdf"))
+image_convert(pdf, "png")
 ```
 
 # Full Linear Model
@@ -36,6 +43,4 @@ supp_interaction %>%
 # Codebook
 
 ```{r, child="data/social_skills_codebook.Rmd"}
-
 ```
-
